@@ -1,61 +1,62 @@
 package model;
 
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import service.CardService;
-
+@Entity
 public class User {
+	@Id
+	@GeneratedValue
 	private int id;
 	private String username;
-	private String pwd;
+	public String pwd;
 	private String mail;
 	private List<Integer> Collection;
+	private int Money;
 	
 	public User() {
 	}
-
-	public User(int id,String username, String pwd, String mail) {
+	
+// PWD????
+	public User(String username, String pwd, String mail) {
 		super();
-		this.id=id;
 		this.username=username;
 		this.pwd=pwd;
 		this.mail=mail;
-		this.Collection=new ArrayList<Integer>();		
+		this.Collection=new ArrayList<Integer>();	
+		this.Money=0;
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
-	public void setName(String username) {
-		this.username = username;
-	}
-
 	public String getMail() {
 		return this.mail;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public void addCard(int idCard) {
 		this.Collection.add(id);
 	}
 	
-	public void getCollection() {
-		for (int id : this.Collection) {
-			System.out.println(CardService.getCard(id));
-		}
+	public List<Integer> getCollection() {
+		return this.Collection;
 	}
-	@Override
-	public String toString() {
-		return "Username: "+this.username+" Pwd: "+this.pwd+" Mail: "+this.mail+" Id: "+this.id;
+	
+	public int getMoney() {
+		return this.Money;
+		
+	}
+	public void setMoney(int Money) {
+		this.Money=Money;
+	}
+	
+	public int getCollectionSize() {
+		return this.Collection.size();
 	}
 }
