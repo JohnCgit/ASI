@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import model.Transaction;
 import repository.TransactionRepository;
-import rest.CardService;
-import rest.UserService;
 
 public class MarketService {
 
