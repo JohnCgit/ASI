@@ -15,7 +15,7 @@ public class Transaction {
 	public Transaction(int id,int cardId,int sellerId) 
 	{
 		super();
-		this.cardId = id;
+		this.id = id;
 		this.cardId = cardId;
 		this.sellerId = sellerId;
 	}
