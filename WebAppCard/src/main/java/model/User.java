@@ -22,7 +22,7 @@ public class User {
 	public User() {
 	}
 	
-// PWD????
+// PWD where does it goes????
 	public User(String username, String pwd, String mail) {
 		super();
 		this.username=username;
