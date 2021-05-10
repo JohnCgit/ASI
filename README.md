@@ -8,3 +8,6 @@ Pour push:
 
 
 Dans l'onglet git staging -> commit and push
+
+
+https://gist.github.com/justsml/529d0b1ddc5249095ff4b890aad5e801
