@@ -4,4 +4,6 @@ Pour push:
 * Clic droit ASI Master (eclipse)
 * fetch
 * rebase
-* commit
+
+
+Dans l'onglet git staging -> commit and push
