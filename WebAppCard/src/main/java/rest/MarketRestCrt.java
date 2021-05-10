@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Transaction;
-import repository.TransactionRepository;
 import service.MarketService;
 
 @RestController
@@ -31,8 +30,7 @@ public class MarketRestCrt {
 	@RequestMapping(method=RequestMethod.POST,value="/market/buy/{idTransaction}/{idBuyer}")
 	public void buyCard(@PathVariable int idTransaction, @PathVariable int idBuyer) 
 	{
-		Transaction t = mService.getTransaction(idTransaction);
-		
+		mService.buyCard(idTransaction,idBuyer);
 	}
 	
 }
