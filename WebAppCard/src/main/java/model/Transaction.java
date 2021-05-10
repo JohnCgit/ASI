@@ -12,10 +12,9 @@ public class Transaction {
 	private Integer cardId;
 	private Integer sellerId;
 	
-	public Transaction(int id,int cardId,int sellerId) 
+	public Transaction(int cardId,int sellerId) 
 	{
 		super();
-		this.id = id;
 		this.cardId = cardId;
 		this.sellerId = sellerId;
 	}

@@ -24,4 +24,9 @@ public class MarketService {
 			return null;
 		}
 	}
+
+	public void getAll() {
+		// TODO Auto-generated method stub
+		
+	}
 }

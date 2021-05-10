@@ -19,18 +19,20 @@ public class MarketRestCrt {
 	@RequestMapping(method=RequestMethod.GET,value="/market/getAll")
 	public void getAllCard() 
 	{
+		mService.getAll();
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/market/sell/{idCard}/{idSeller}")
-	public void sellCard(@PathVariable String idCard, @PathVariable String idSeller) 
+	public void sellCard(@PathVariable int idCard, @PathVariable int idSeller) 
 	{
-		Transaction t = new Transaction()
-		addTransaction(Transaction t)
+		mService.addTransaction(new Transaction(idCard,idSeller));
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/market/buy/{idCard}/{idBuyer}")
-	public void buyCard(@PathVariable String idCard, @PathVariable String idBuyer) 
+	@RequestMapping(method=RequestMethod.POST,value="/market/buy/{idTransaction}/{idBuyer}")
+	public void buyCard(@PathVariable int idTransaction, @PathVariable int idBuyer) 
 	{
+		Transaction t = mService.getTransaction(idTransaction);
+		
 	}
 	
 }
