@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 import service.CardService;
-import la joie ah bah nn
 
 public class User {
 	private int id;
