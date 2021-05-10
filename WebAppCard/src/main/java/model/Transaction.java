@@ -19,5 +19,12 @@ public class Transaction {
 		this.sellerId = sellerId;
 	}
 
+	public Integer getCardId() {
+		return cardId;
+	}
+
+	public Integer getSellerId() {
+		return sellerId;
+	}
 
 }

@@ -15,6 +15,8 @@ public class MarketRestCrt {
 	
 	@Autowired
 	MarketService mService;
+	UserService uService;
+	CardService cService;
 	
 	@RequestMapping(method=RequestMethod.GET,value="/market/getAll")
 	public void getAllCard() 
@@ -32,6 +34,9 @@ public class MarketRestCrt {
 	public void buyCard(@PathVariable int idTransaction, @PathVariable int idBuyer) 
 	{
 		Transaction t = mService.getTransaction(idTransaction);
+		uService.addCard(t.getCardId(),idBuyer);
+		uService.updateMoney(t.getSellerId(),cService.getPrice(t.getCardId());
+		uService.updateMoney(t.getBuyerId(),-cService.getPrice(t.getCardId());
 		
 	}
 	
