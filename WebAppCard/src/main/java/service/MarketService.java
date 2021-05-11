@@ -46,7 +46,7 @@ public class MarketService {
 		Transaction t = getTransaction(idTransaction);
 		uService.addCard(t.getCardId(),idBuyer);
 		uService.updateMoney(t.getSellerId(),cService.getPrice(t.getCardId());
-		uService.updateMoney(t.getBuyerId(),-cService.getPrice(t.getCardId());
+		uService.updateMoney(idBuyer,-cService.getPrice(t.getCardId());
 		
 	}
 }
