@@ -36,20 +36,14 @@ function funReturnDefault() {
 
 function funAchat() {
     funClear("content");
-    var achat = document.createElement("div");
-    achat.appendChild(document.createTextNode('Réussi achat'));
-
-    document.getElementById('content').appendChild(achat);
     document.getElementsByClassName("header")[0].innerHTML = ('Achat');
+    loadRessource("tab.hmtl","content","GET");  
     funReturnDefault();
 }
 
 function funVente() {
     funClear("content");
-    var vente = document.createElement("div");
-    vente.appendChild(document.createTextNode('Réussi vente'));
-
-    document.getElementById('content').appendChild(vente);
+    loadRessource("tab.hmtl","content","GET");
     document.getElementsByClassName("header")[0].innerHTML = ('Vente');
     funReturnDefault();
 
@@ -66,7 +60,16 @@ function funJeu() {
 
 }
 
-
+function loadRessource(source,destination,method) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       document.getElementById(destination).innerHTML = this.responseText;
+      }
+    };
+    xhttp.open(method, source, true);
+    xhttp.send();
+}
 
 window.onload = function() {
     funDefault();
