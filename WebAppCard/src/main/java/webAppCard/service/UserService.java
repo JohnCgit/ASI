@@ -1,12 +1,12 @@
-package service;
+package webAppCard.service;
 
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.User;
-import repository.UserRepository;
+import webAppCard.model.User;
+import webAppCard.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -57,6 +57,11 @@ public class UserService {
 	private User getUser(int idUser) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void verifUser(String username, String password) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,8 +1,9 @@
-package repository;
+package webAppCard.repository;
 
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
-import model.Card;
+
+import webAppCard.model.Card;
 
 public interface CardRepository extends CrudRepository<Card, Integer> {
 

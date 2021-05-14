@@ -1,12 +1,12 @@
-package service;
+package webAppCard.service;
 
   import java.util.Optional;
 
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.stereotype.Service;
 
-  import model.Card;
-  import repository.CardRepository;
+import webAppCard.model.Card;
+import webAppCard.repository.CardRepository;
 
   @Service
   public class CardService {
@@ -25,5 +25,10 @@ package service;
   			return null;
   		}
   	}
+
+	public int getPrice(Integer cardId) {
+		// TODO Auto-generated method stub
+		return getCard(cardId).getPrice();
+	}
 
   }

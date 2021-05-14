@@ -1,4 +1,4 @@
-package service;
+package webAppCard.service;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import model.Transaction;
-import repository.TransactionRepository;
+import webAppCard.model.Transaction;
+import webAppCard.repository.TransactionRepository;
 
 public class MarketService {
 
@@ -45,8 +45,8 @@ public class MarketService {
 	public void buyCard(int idTransaction, int idBuyer) {
 		Transaction t = getTransaction(idTransaction);
 		uService.addCard(t.getCardId(),idBuyer);
-		uService.updateMoney(t.getSellerId(),cService.getPrice(t.getCardId());
-		uService.updateMoney(idBuyer,-cService.getPrice(t.getCardId());
+		uService.updateMoney(t.getSellerId(),cService.getPrice(t.getCardId()));
+		uService.updateMoney(idBuyer,-cService.getPrice(t.getCardId()));
 		
 	}
 }

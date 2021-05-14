@@ -1,8 +1,8 @@
-package repository;
+package webAppCard.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import model.Transaction;
+import webAppCard.model.Transaction;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 
