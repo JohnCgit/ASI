@@ -1,4 +1,4 @@
-package webAppCard.service;
+package com.webAppCard.service;
 
 import java.util.Optional;
 import java.util.Random;
@@ -6,8 +6,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import webAppCard.model.User;
-import webAppCard.repository.UserRepository;
+import com.webAppCard.model.User;
+import com.webAppCard.repository.UserRepository;
 
 @Service
 public class UserService {

@@ -1,4 +1,4 @@
-package webAppCard.rest;
+package com.webAppCard.rest;
 
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.web.bind.annotation.PathVariable;
@@ -7,8 +7,8 @@ package webAppCard.rest;
   import org.springframework.web.bind.annotation.RequestMethod;
   import org.springframework.web.bind.annotation.RestController;
 
-import webAppCard.model.Card;
-import webAppCard.service.CardService;
+import com.webAppCard.model.Card;
+import com.webAppCard.service.CardService;
 
   @RestController
   public class CardRestCrt {

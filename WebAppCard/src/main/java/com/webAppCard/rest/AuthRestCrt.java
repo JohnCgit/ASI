@@ -1,4 +1,4 @@
-package webAppCard.rest;
+package com.webAppCard.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import webAppCard.service.AuthService;
+import com.webAppCard.service.AuthService;
 
 @RestController
 public class AuthRestCrt {

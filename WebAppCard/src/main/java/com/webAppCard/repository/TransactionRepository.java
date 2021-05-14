@@ -1,9 +1,11 @@
-package webAppCard.repository;
+package com.webAppCard.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import webAppCard.model.Transaction;
+import com.webAppCard.model.Transaction;
 
+@Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 
 }

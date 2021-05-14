@@ -1,14 +1,16 @@
-package webAppCard.service;
+package com.webAppCard.service;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import webAppCard.model.Transaction;
-import webAppCard.repository.TransactionRepository;
+import com.webAppCard.model.Transaction;
+import com.webAppCard.repository.TransactionRepository;
 
+@Service
 public class MarketService {
 
 	@Autowired

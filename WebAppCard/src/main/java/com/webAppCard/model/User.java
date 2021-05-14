@@ -1,4 +1,4 @@
-package webAppCard.model;
+package com.webAppCard.model;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
-package webAppCard.service;
+package com.webAppCard.service;
 
   import java.util.Optional;
 
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.stereotype.Service;
 
-import webAppCard.model.Card;
-import webAppCard.repository.CardRepository;
+import com.webAppCard.model.Card;
+import com.webAppCard.repository.CardRepository;
 
   @Service
   public class CardService {
