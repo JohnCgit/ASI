@@ -30,7 +30,6 @@ public class MarketService {
 	}
 
 	public List<Integer> getAll() {
-		// TODO Auto-generated method stub
 		int id = 0;
 		Transaction t = getTransaction(id);
 		List<Integer> res = new LinkedList<Integer>();

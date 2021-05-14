@@ -27,7 +27,6 @@ import webAppCard.repository.CardRepository;
   	}
 
 	public int getPrice(Integer cardId) {
-		// TODO Auto-generated method stub
 		return getCard(cardId).getPrice();
 	}
 

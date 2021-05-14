@@ -1,5 +1,6 @@
 package webAppCard.service;
 
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,13 @@ public class UserService {
 	}
 
 	private User getUser(int idUser) {
-		// TODO Auto-generated method stub
-		return null;
+		User res = null;
+		Optional<User> oUser=uRepository.findById(idUser);
+		if(oUser.isPresent()) {
+			res = oUser.get();
+		}
+		return res;
+
 	}
 
 	public void verifUser(String username, String password) {
