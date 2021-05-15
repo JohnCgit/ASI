@@ -10,7 +10,7 @@ import com.webAppCard.repository.CardRepository;
 
   @Service
   public class CardService {
-  	@Autowired
+	@Autowired
   	CardRepository cRepository;
   	public void addCard(Card c) {
   		Card createdCard=cRepository.save(c);

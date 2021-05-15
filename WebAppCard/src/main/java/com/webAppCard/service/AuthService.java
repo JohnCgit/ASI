@@ -2,7 +2,6 @@ package com.webAppCard.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.webAppCard.service.UserService;
 	@Service
 	public class AuthService {
 	

@@ -11,7 +11,6 @@ import com.webAppCard.repository.UserRepository;
 
 @Service
 public class UserService {
-	
 	@Autowired
 	UserRepository uRepository;
 	public boolean addUser(String username, String pwd, String mail) {

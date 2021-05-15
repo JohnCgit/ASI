@@ -15,6 +15,7 @@ public class MarketService {
 
 	@Autowired
 	TransactionRepository tRepository;
+	
 	UserService uService;
 	CardService cService;
 	
