@@ -44,7 +44,7 @@ function funAchat() {
     funClear("content_body");
     document.getElementById("content_header").textContent = ('Achat');
     //createFillTab(loadRessource(/Market/GetALL))
-    createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")));
+    createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")), true);
     funReturnDefault();
 }
 
@@ -55,7 +55,7 @@ function funVente() {
     funClear("content_body");
     document.getElementById("content_header").textContent = ('Vente');
     //createFillTab(loadRessource("/User/GetCollection","GET"))
-    createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")));
+    createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")), false);
     funReturnDefault();
 
 }
@@ -97,6 +97,7 @@ function loadRessource(source, method) {
 
 // Permet l'affichage des liens vers les pages de connexion et d'inscription dans la zone content_header
 function funUserDefault() {
+    funClear("user_info")
 
     var login = document.createElement("a");
     login.setAttribute("href", "login.html");
@@ -123,8 +124,7 @@ function funUserDefault() {
 
 // Lorsque l'utilisateur est connecté fait apparaître son nom et sa cagnotte dans la zone content_header
 function funUser(Surname, Password) {
-    var user = { money: 500, Name: "Maurice" };
-
+    funClear("user_info")
     var money = document.createElement("p");
     money.textContent = user.money;
     document.getElementById("user_info").appendChild(money);
@@ -133,9 +133,31 @@ function funUser(Surname, Password) {
     profil.textContent = user.Name;
     document.getElementById("user_info").appendChild(profil);
 }
+var user = { money: 500, Name: "Maurice" };
 
+// Permet de gérer l'achat d'une carte côté client et côté serveur 
+function achat(TransactionId) {
+    var Surname = new URLSearchParams(window.location.search).get("Surname");
+    var Password = new URLSearchParams(window.location.search).get("Password");
+    //loadRessource(`/market/buy/${TransactionId}/${idUser}`,"POST");
+    funClear(TransactionId);
+    document.getElementById(TransactionId).parentElement.remove();
+    user.money -= 100;
+    funUser();
+}
+
+// Permet de gérer la vente d'une carte côté client et côté serveur 
+function vente(CardId) {
+    var Surname = new URLSearchParams(window.location.search).get("Surname");
+    var Password = new URLSearchParams(window.location.search).get("Password");
+    //loadRessource(`/market/sell/${CardId}/${idUser}`,"POST");
+    funClear(CardId);
+    document.getElementById(CardId).parentElement.remove();
+}
 // Permet de créer et de remplir un tableau contenant les informations sur une liste de cartes
-function createFillTab(ListCard) {
+// Si bool vaut true: affiche le tableau des achats
+// Sinon affiche celui des ventes
+function createFillTab(ListCard, bool) {
     document.getElementById("content_body").innerHTML +=
         `<table style="width:70%" id="tab">
         <tr>
@@ -147,17 +169,35 @@ function createFillTab(ListCard) {
             <th>Price</th>
         </tr>
     </table>`;
-    ListCard.forEach(Card => {
-        document.getElementById("tab").innerHTML +=
-            `<tr>
-        <th>${Card.Name}</th>
-        <th>${Card.Family}</th>
-        <th>${Card.Affinity}</th>
-        <th>${Card.Energy}</th>
-        <th>${Card.HP}</th>
-        <th>${Card.Price}</th>
-    </tr>`;
-    });
+    if (bool) {
+        ListCard.forEach(Transaction => {
+            document.getElementById("tab").innerHTML +=
+                `<tr id="${Transaction.id}">
+            <th>${Transaction.Card.Name}</th>
+            <th>${Transaction.Card.Family}</th>
+            <th>${Transaction.Card.Affinity}</th>
+            <th>${Transaction.Card.Energy}</th>
+            <th>${Transaction.Card.HP}</th>
+            <th>${Transaction.Card.Price}</th>
+            <th><button onclick= "achat(${Transaction.id})"> achat </th>
+        </tr>`;
+        });
+
+    } else {
+        ListCard.forEach(Card => {
+            document.getElementById("tab").innerHTML +=
+                `<tr id="${Card.id}">
+            <th>${Card.Name}</th>
+            <th>${Card.Family}</th>
+            <th>${Card.Affinity}</th>
+            <th>${Card.Energy}</th>
+            <th>${Card.HP}</th>
+            <th>${Card.Price}</th>
+            <th><button onclick= "vente(${Card.id})"> vente </th>
+        </tr>`;
+        });
+    }
+
 
 }
 
