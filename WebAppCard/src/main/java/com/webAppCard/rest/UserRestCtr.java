@@ -1,33 +1,49 @@
 package com.webAppCard.rest;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webAppCard.model.User;
+import com.webAppCard.service.UserService;
+
 @RestController
 public class UserRestCtr {
-	@RequestMapping(method=RequestMethod.GET, value="/user/getOne")
-	public boolean getUser(){
-		return true;
+	
+	@Autowired
+    UserService uService;
+	
+	@RequestMapping(method=RequestMethod.GET, value="/user/{id}")
+	public User getUserById(@PathVariable int id){
+		User u=uService.getUserById(Integer.valueOf(id));
+	    return u;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/getAll")
-	public boolean getAllUsers() {
-		return true;
+	@RequestMapping(method=RequestMethod.GET, value="/user/{name}")
+	public User getUserByName(@PathVariable String name) {
+		User u=uService.getUserByName(name);
+		return u;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/create")
-	public boolean createUser() {
-		return true;
+	@RequestMapping(method=RequestMethod.GET, value="/user/getAll")
+	public List<User> getAllUsers() {
+		List<User> LUser;
+		LUser=uService.getAllUsers();
+		return LUser;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/update")
-	public boolean updateUser() {
-		return true;
+	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{pwd}/{mail}")
+	public void createUser(@PathVariable String name,@PathVariable String pwd,@PathVariable String mail) {
+		uService.addUser(name, pwd, mail);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/delete")
-	public boolean deleteUser() {
-		return true;
+	@RequestMapping(method=RequestMethod.POST, value="/user/delete/{name}")
+	public void deleteUser(@PathVariable String name) {
+		User u = getUserByName(name);
+		uService.deleteUser(u);
 	}
 }

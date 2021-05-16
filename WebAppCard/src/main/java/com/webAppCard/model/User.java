@@ -24,7 +24,6 @@ public class User {
 	public User() {
 	}
 	
-// PWD where does it goes????
 	public User(String username, String pwd, String mail) {
 		super();
 		this.username=username;
@@ -38,6 +37,10 @@ public class User {
 		return username;
 	}
 
+	public String getPwd() {
+		return this.pwd;
+	}
+	
 	public String getMail() {
 		return this.mail;
 	}
