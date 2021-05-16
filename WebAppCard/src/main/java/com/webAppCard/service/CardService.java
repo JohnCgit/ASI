@@ -8,6 +8,8 @@ package com.webAppCard.service;
 import com.webAppCard.model.Card;
 import com.webAppCard.repository.CardRepository;
 
+
+//Gestion d'une carte
   @Service
   public class CardService {
 	@Autowired
@@ -25,11 +27,13 @@ import com.webAppCard.repository.CardRepository;
   			return null;
   		}
   	}
-
+	  
+	//Permet de récupérer le prix de la carte dont on a fourni l'id
 	public int getPrice(Integer cardId) {
 		return getCard(cardId).getPrice();
 	}
 
+	//Permet de récupérer l'id d'une carte
 	public int getId(Card card) {
 		return card.getId();
 	}
