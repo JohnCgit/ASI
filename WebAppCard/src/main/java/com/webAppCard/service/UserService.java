@@ -1,5 +1,6 @@
 package com.webAppCard.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -11,29 +12,33 @@ import com.webAppCard.repository.UserRepository;
 
 @Service
 public class UserService {
+	
 	@Autowired
 	UserRepository uRepository;
-	public boolean addUser(String username, String pwd, String mail) {
-		//if username/mail used, no adding the dude
-		User newUser=new User(username, pwd, mail);
-		initCollec(newUser);
-		uRepository.save(newUser);
-		return true;
+	
+	public boolean addUser(String username, String pwd, String mail) { // Créer un user s'il n'existe pas déjà
+		boolean res=false;
+		Optional<User> oUser=uRepository.findByName(username);
+		if(oUser.isEmpty()) {
+			User newUser=new User(username, pwd, mail);
+			initCollec(newUser);
+			uRepository.save(newUser);
+			res= true;
+		}
+		return res;
 	}
 	
-	public boolean addCard(int idCard, int idUser) {
-		User u=getUser(idUser);
-		// if user has card, then no adding it
+	public void addCard(int idCard, int idUser) {// rajoute une carte dans la collection de l'utilisateur
+		User u=getUserById(idUser);
 		u.addCard(idCard);
-		return true;
-	}
+		}
 	
-	public void initCollec(User u) {
+	public void initCollec(User u) { //Une collection est assigné à un user quand il est créé
 		int[] array = {0,1,2,3,4};	
 		for (int i : array) {u.addCard(i);}		
 		}
 	
-	public void randomInitCollec(User u) {
+	public void randomInitCollec(User u) { //fonction potentiellement utile pour attribuer des cartes aléatoirement
 		Random rng = new Random(); // Ideally just create one instance globally
 		int numbersNeeded = 5;
 		int max=20;
@@ -45,29 +50,51 @@ public class UserService {
 		}
 	}
 	
-	public boolean updateMoney(int nb, int idUser) {
-		User u=getUser(idUser);
+	public void updateMoney(int nb, int idUser) { // change la valeur d'argent de l'utilisateur
+		User u=getUserById(idUser);
 		int money=u.getMoney();
-		// if money not enough, no buying cards 
 		money+=nb;
 		u.setMoney(money);
-		return true;
 	}
 
-	private User getUser(int idUser) {
+	public User getUserById(int idUser) { // renvoie l'utilistauer, s'il existe, grâce à son id
 		User res = null;
 		Optional<User> oUser=uRepository.findById(idUser);
 		if(oUser.isPresent()) {
 			res = oUser.get();
 		}
 		return res;
-
 	}
 
-	public void verifUser(String username, String password) {
-		// TODO Auto-generated method stub
-		
+	public User getUserByName(String name) { // renvoie l'utilistauer, s'il existe, grâce à son id
+		User res=null;
+		Optional<User> oUser=uRepository.findByName(name);
+		if (oUser.isPresent()) {
+			res=oUser.get();
+		}
+		return res;
 	}
-
+	
+	public boolean verifUser(String username, String password) { 	// renvoie true si l'utilisateur existe, 
+																	//et si le mot de passe est bon
+		boolean res=false;
+		Optional<User> oUser=uRepository.findByName(username);
+		if (oUser.isPresent()) {
+			User u=oUser.get();
+			if (u.getPwd()==password) {
+				res=true;
+			}
+		}
+		return res;		
+	}
+	
+	public void deleteUser(User u) { // supprime un utilisateur
+		uRepository.delete(u);
+	}
+	
+	public List<User> getAllUsers(){ //retourne tout les utilisateurs
+		List<User> LUser;
+		LUser=uRepository.findAll();
+		return LUser;
+	}
 }
-

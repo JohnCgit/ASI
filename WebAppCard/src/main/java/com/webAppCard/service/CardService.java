@@ -30,4 +30,8 @@ import com.webAppCard.repository.CardRepository;
 		return getCard(cardId).getPrice();
 	}
 
+	public int getId(Card card) {
+		return card.getId();
+	}
+
   }
