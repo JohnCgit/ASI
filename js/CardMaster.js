@@ -1,3 +1,4 @@
+//Supprime tous les enfants du noeud d'id arg
 function funClear(arg) {
     myNode = document.getElementById(arg);
     while (myNode.firstChild) {
@@ -5,6 +6,8 @@ function funClear(arg) {
     }
 }
 
+//Génère le contenu par défaut de la page index.html 
+// Par défaut, cette page permet d'accéder aux espaces d'achat, de vente et de jeu
 function funDefault() {
     funClear("content_header");
     funClear("content_body");
@@ -26,6 +29,7 @@ function funDefault() {
 
 }
 
+// Génère un bouton permettant de retourner sur la page par défaut
 function funReturnDefault() {
     var def = document.createElement("button");
     def.appendChild(document.createTextNode('Retour arrière'));
@@ -34,6 +38,8 @@ function funReturnDefault() {
 
 }
 
+// Génère le contenu de l'espace achat:
+// Un tableau contenant les informations des cartes sur le marché
 function funAchat() {
     funClear("content_body");
     document.getElementById("content_header").textContent = ('Achat');
@@ -41,6 +47,9 @@ function funAchat() {
     createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")));
     funReturnDefault();
 }
+
+// Génère le contenu de l'espace vente:
+// Un tableau contenant les informations des cartes dans la collection du joueur
 
 function funVente() {
     funClear("content_body");
@@ -51,6 +60,7 @@ function funVente() {
 
 }
 
+// Génère le contenu de l'espace jeu
 function funJeu() {
     funClear("content_body");
     var jeu = document.createElement("div");
@@ -74,6 +84,7 @@ function funJeu() {
     };
 } */
 
+// Fonction permettant la récupération d'une information située à l'url source avec la méthode method
 function loadRessource(source, method) {
     var xhttp = new XMLHttpRequest();
     xhttp.open(method, source, false);
@@ -84,7 +95,7 @@ function loadRessource(source, method) {
     }
 };
 
-
+// Permet l'affichage des liens vers les pages de connexion et d'inscription dans la zone content_header
 function funUserDefault() {
 
     var login = document.createElement("a");
@@ -110,6 +121,7 @@ function funUserDefault() {
     document.getElementById("user_info").appendChild(profil);
 } */
 
+// Lorsque l'utilisateur est connecté fait apparaître son nom et sa cagnotte dans la zone content_header
 function funUser(Surname, Password) {
     var user = { money: 500, Name: "Maurice" };
 
@@ -122,6 +134,7 @@ function funUser(Surname, Password) {
     document.getElementById("user_info").appendChild(profil);
 }
 
+// Permet de créer et de remplir un tableau contenant les informations sur une liste de cartes
 function createFillTab(ListCard) {
     document.getElementById("content_body").innerHTML +=
         `<table style="width:70%" id="tab">
@@ -148,6 +161,9 @@ function createFillTab(ListCard) {
 
 }
 
+// Lors du chargement de la page:
+//si l'utilisateur est connecté alors le contenu_header fait apparaître son nom et sa cagnotte
+//sinon le contenu_header contient des liens vers les pages de connexion et d'inscription 
 window.onload = function() {
     funDefault();
     var Surname = new URLSearchParams(window.location.search).get("Surname");
@@ -158,4 +174,15 @@ window.onload = function() {
     } else {
         funUserDefault();
     }
+};
+
+// Si le client n'est pas connecté, le redirige vers la page de connexion
+window.onclick = function() {
+    var Surname = new URLSearchParams(window.location.search).get("Surname");
+    var Password = new URLSearchParams(window.location.search).get("Password");
+    //if loadRessource(`/verifUser/${Surname}/${Password}`,'GET') = true
+    if (Surname == null) {
+        window.location.href = "login.html";
+    }
+
 };
