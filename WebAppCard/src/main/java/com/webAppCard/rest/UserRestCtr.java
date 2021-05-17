@@ -52,9 +52,9 @@ public class UserRestCtr {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{surname}/{password}")
-	public void createUser(@PathVariable String name,@PathVariable String surname,@PathVariable String password) {
-		System.out.println(uService.addUser(name, password, surname));
-		System.out.println("user added");
+	public boolean  createUser(@PathVariable String name,@PathVariable String surname,@PathVariable String password) {
+		return uService.addUser(name, password, surname);
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/user/delete/{name}")

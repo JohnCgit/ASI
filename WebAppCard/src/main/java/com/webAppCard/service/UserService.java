@@ -16,11 +16,11 @@ public class UserService {
 	@Autowired
 	UserRepository uRepository;
 	
-	public boolean addUser(String username, String pwd, String mail) { // Créer un user s'il n'existe pas déjà
+	public boolean addUser(String name, String pwd, String surname) { // Créer un user s'il n'existe pas déjà
 		boolean res=false;
-		Optional<User> oUser=uRepository.findByUsername(username);
+		Optional<User> oUser=uRepository.findByName(name);
 		if(!oUser.isPresent()) {
-			User newUser=new User(username, pwd, mail);
+			User newUser=new User(name, pwd, surname);
 			initCollec(newUser);
 			uRepository.save(newUser);
 			updateMoney(500,newUser.getId());
@@ -71,7 +71,7 @@ public class UserService {
 
 	public User getUserByName(String name) { // renvoie l'utilistauer, s'il existe, grâce à son id
 		User res=null;
-		Optional<User> oUser=uRepository.findByUsername(name);
+		Optional<User> oUser=uRepository.findByName(name);
 		if (oUser.isPresent()) {
 			res=oUser.get();
 		}
@@ -81,7 +81,7 @@ public class UserService {
 	public boolean verifUser(String username, String password) { 	// renvoie true si l'utilisateur existe, 
 																	//et si le mot de passe est bon
 		boolean res=false;
-		Optional<User> oUser=uRepository.findByUsername(username);
+		Optional<User> oUser=uRepository.findByName(username);
 		if (oUser.isPresent()) {
 			User u=oUser.get();
 			if (u.getPassword().equals(password)) {

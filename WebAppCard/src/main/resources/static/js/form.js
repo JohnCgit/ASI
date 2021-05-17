@@ -7,7 +7,7 @@ function setActionLogin(form) {
     var Name = document.getElementById("Name").value;
     var Password = document.getElementById("Password").value;
     form.method = "get";
-    if (loadRessource(`http://127.0.0.1:${port}/login/${Name}/${Password}`) == "true") {
+    if (loadRessource(`http://127.0.0.1:${port}/login/${Name}/${Password}`,"POST") == "true") {
 
         form.action = "index.html"; // /index.html?Surname=Surname&Password=Password
     } else {
@@ -27,7 +27,7 @@ function setActionSub(form) {
     var RePassword = document.getElementById("Re-Password").value;
     form.method = "get";
     if (Password == RePassword) {
-        if (loadRessource(`http://127.0.0.1:${port}/user/create/${Name}/${Surname}/${Password}`) == "true") {
+        if (loadRessource(`http://127.0.0.1:${port}/user/create/${Name}/${Surname}/${Password}`,"POST") == "true") {
             form.action = "index.html";
         } else {
             alert("Surname already used");

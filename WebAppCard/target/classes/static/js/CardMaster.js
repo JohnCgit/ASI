@@ -54,6 +54,7 @@ function funAchat() {
 
 function funVente() {
     funClear("content_body");
+    var Name = new URLSearchParams(window.location.search).get("name");
     document.getElementById("content_header").textContent = ('Vente');
     var idUser = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET")).id;
     createFillTab(JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/getAllCard/${idUser}`, "GET")), false);
@@ -132,13 +133,13 @@ function funUser(Name) {
     document.getElementById("user_info").appendChild(money);
 
     var profil = document.createElement("p");
-    profil.textContent = user.Name;
+    profil.textContent = user.name;
     document.getElementById("user_info").appendChild(profil);
 }
 
 // Permet de gérer l'achat d'une carte côté client et côté serveur 
 function achat(TransactionId) {
-    var Name = new URLSearchParams(window.location.search).get("Name");
+    var Name = new URLSearchParams(window.location.search).get("name");
     var idUser = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET")).id;
     loadRessource(`http://127.0.0.1:${port}/market/buy/${TransactionId}/${idUser}`, "POST");
     funClear(TransactionId);
@@ -206,10 +207,10 @@ function createFillTab(ListCard, bool) {
 //sinon le contenu_header contient des liens vers les pages de connexion et d'inscription 
 window.onload = function() {
     funDefault();
-    var Name = new URLSearchParams(window.location.search).get("Surname");
+    var Name = new URLSearchParams(window.location.search).get("Name");
     var Password = new URLSearchParams(window.location.search).get("Password");
-    if (Surname != null) {
-        if (loadRessource(`http://127.0.0.1:${port}/login/${Name}/${Password}`) == "true") {
+    if (Name != null) {
+        if (loadRessource(`http://127.0.0.1:${port}/login/${Name}/${Password}`,"POST") == "true") {
             funUser(Name);
         }
     } else {
