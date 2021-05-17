@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webAppCard.model.Card;
 import com.webAppCard.model.Transaction;
 import com.webAppCard.service.CardService;
 import com.webAppCard.service.MarketService;

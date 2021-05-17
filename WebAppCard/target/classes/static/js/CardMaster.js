@@ -124,7 +124,7 @@ function funUserDefault() {
 } */
 
 // Lorsque l'utilisateur est connecté fait apparaître son nom et sa cagnotte dans la zone content_header
-function funUser(Surname, Password) {
+function funUser(Name) {
     funClear("user_info")
     var user = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET"));
     var money = document.createElement("p");
@@ -138,8 +138,7 @@ function funUser(Surname, Password) {
 
 // Permet de gérer l'achat d'une carte côté client et côté serveur 
 function achat(TransactionId) {
-    var Surname = new URLSearchParams(window.location.search).get("Surname");
-    var Password = new URLSearchParams(window.location.search).get("Password");
+    var Name = new URLSearchParams(window.location.search).get("Name");
     var idUser = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET")).id;
     loadRessource(`http://127.0.0.1:${port}/market/buy/${TransactionId}/${idUser}`, "POST");
     funClear(TransactionId);
@@ -211,7 +210,7 @@ window.onload = function() {
     var Password = new URLSearchParams(window.location.search).get("Password");
     if (Surname != null) {
         if (loadRessource(`http://127.0.0.1:${port}/login/${Name}/${Password}`) == "true") {
-            funUser(Surname, Password);
+            funUser(Name);
         }
     } else {
         funUserDefault();
@@ -220,10 +219,8 @@ window.onload = function() {
 
 // Si le client n'est pas connecté, le redirige vers la page de connexion
 window.onclick = function() {
-    var Name = new URLSearchParams(window.location.search).get("Surname");
-    var Password = new URLSearchParams(window.location.search).get("Password");
-    //if loadRessource(`/verifUser/${Surname}/${Password}`,'GET') = true
-    if (Surname == null) {
+    var Name = new URLSearchParams(window.location.search).get("Name");
+    if (Name == null) {
         window.location.href = "login.html";
     }
 
