@@ -17,15 +17,16 @@ public class UserRestCtr {
 	@Autowired
     UserService uService;
 	
-	@RequestMapping(method=RequestMethod.GET, value="/user/{id}")
+	@RequestMapping(method=RequestMethod.GET, value="/user/id/{id}")
 	public User getUserById(@PathVariable int id){
 		User u=uService.getUserById(Integer.valueOf(id));
 	    return u;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/user/{name}")
+	@RequestMapping(method=RequestMethod.GET, value="/user/name/{name}")
 	public User getUserByName(@PathVariable String name) {
 		User u=uService.getUserByName(name);
+		System.out.println(u);
 		return u;
 	}
 	
@@ -38,7 +39,8 @@ public class UserRestCtr {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{pwd}/{mail}")
 	public void createUser(@PathVariable String name,@PathVariable String pwd,@PathVariable String mail) {
-		uService.addUser(name, pwd, mail);
+		System.out.println(uService.addUser(name, pwd, mail));
+		System.out.println("user added");
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/user/delete/{name}")

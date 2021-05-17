@@ -15,7 +15,7 @@ import com.webAppCard.service.CardService;
       @Autowired
       CardService cService;
       
-      @RequestMapping(method=RequestMethod.POST,value="/Card")
+      @RequestMapping(method=RequestMethod.POST,value="/Card/{name}/")
       public void addCard(@RequestBody Card Card) {
           cService.addCard(Card);
       }

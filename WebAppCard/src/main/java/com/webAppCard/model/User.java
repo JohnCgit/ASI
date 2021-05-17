@@ -64,4 +64,8 @@ public class User {
 	public int getCollectionSize() {
 		return this.Collection.size();
 	}
+	
+	public int getId() {
+		return id;
+	}
 }

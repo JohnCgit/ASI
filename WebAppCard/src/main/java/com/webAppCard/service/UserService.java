@@ -18,11 +18,12 @@ public class UserService {
 	
 	public boolean addUser(String username, String pwd, String mail) { // Créer un user s'il n'existe pas déjà
 		boolean res=false;
-		Optional<User> oUser=uRepository.findByName(username);
-		if(oUser.isEmpty()) {
+		Optional<User> oUser=uRepository.findByUsername(username);
+		if(!oUser.isPresent()) {
 			User newUser=new User(username, pwd, mail);
 			initCollec(newUser);
 			uRepository.save(newUser);
+			updateMoney(500,newUser.getId());
 			res= true;
 		}
 		return res;
@@ -31,6 +32,7 @@ public class UserService {
 	public void addCard(int idCard, int idUser) {// rajoute une carte dans la collection de l'utilisateur
 		User u=getUserById(idUser);
 		u.addCard(idCard);
+		uRepository.save(getUserById(idUser));
 		}
 	
 	public void initCollec(User u) { //Une collection est assigné à un user quand il est créé
@@ -55,6 +57,7 @@ public class UserService {
 		int money=u.getMoney();
 		money+=nb;
 		u.setMoney(money);
+		uRepository.save(getUserById(idUser));
 	}
 
 	public User getUserById(int idUser) { // renvoie l'utilistauer, s'il existe, grâce à son id
@@ -68,7 +71,7 @@ public class UserService {
 
 	public User getUserByName(String name) { // renvoie l'utilistauer, s'il existe, grâce à son id
 		User res=null;
-		Optional<User> oUser=uRepository.findByName(name);
+		Optional<User> oUser=uRepository.findByUsername(name);
 		if (oUser.isPresent()) {
 			res=oUser.get();
 		}
@@ -78,7 +81,7 @@ public class UserService {
 	public boolean verifUser(String username, String password) { 	// renvoie true si l'utilisateur existe, 
 																	//et si le mot de passe est bon
 		boolean res=false;
-		Optional<User> oUser=uRepository.findByName(username);
+		Optional<User> oUser=uRepository.findByUsername(username);
 		if (oUser.isPresent()) {
 			User u=oUser.get();
 			if (u.getPwd()==password) {
