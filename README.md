@@ -13,3 +13,17 @@ Dans l'onglet git staging -> commit and push
 https://gist.github.com/justsml/529d0b1ddc5249095ff4b890aad5e801
 
 https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Liens utiles pour le rapport :
+
+https://www.talend.com/fr/resources/microservices-vs-soa/?fbclid=IwAR3A-wtmFt7zdYxHnEaU_JyxL0TbM2VG99xc-Ag_ZiowfkzlkbnXO1VCxzs
+
+https://www.pinterest.co.uk/pin/701646816919493537/
+
+https://webdevdesigner.com/q/main-differences-between-soap-and-restful-web-services-in-java-duplicate-11986/
+
+https://www.sepaforcorporates.com/payments-news-2/a-quick-introduction-to-apis-for-folks-interested-in-open-banking/
+
+https://stackoverflow.com/questions/9275613/is-mvc-restful-by-design

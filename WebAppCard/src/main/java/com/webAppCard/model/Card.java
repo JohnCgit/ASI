@@ -1,8 +1,10 @@
-package model;
+package com.webAppCard.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+//Objet Carte avec différents attributs
 
 @Entity
 public class Card {

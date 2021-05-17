@@ -1,7 +1,8 @@
-package model;
+package com.webAppCard.model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,13 +17,13 @@ public class User {
 	private String username;
 	public String pwd;
 	private String mail;
+	@ElementCollection
 	private List<Integer> Collection;
 	private int Money;
 	
 	public User() {
 	}
 	
-// PWD where does it goes????
 	public User(String username, String pwd, String mail) {
 		super();
 		this.username=username;
@@ -36,6 +37,10 @@ public class User {
 		return username;
 	}
 
+	public String getPwd() {
+		return this.pwd;
+	}
+	
 	public String getMail() {
 		return this.mail;
 	}
