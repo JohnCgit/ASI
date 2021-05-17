@@ -14,14 +14,14 @@ public class Card {
 	private String name;
 	private String Family;
 	private String Affinity;
-	private String Energy;
+	private int Energy;
 	private int HP;
 	private int Price;
 	
 	public Card() {
 	}
 
-	public Card(String name, String Family, String Affinity, String Energy, int HP, int Price) {
+	public Card(String name, String Family, String Affinity, int Energy, int HP, int Price) {
 		super();
 		this.name = name;
 		this.Family = Family;
@@ -55,11 +55,11 @@ public class Card {
 		this.Affinity = Affinity;
 	}
 
-	public String getEnergy() {
+	public int getEnergy() {
 		return Energy;
 	}
 
-	public void setEnergy(String Energy) {
+	public void setEnergy(int Energy) {
 		this.Energy = Energy;
 	}
 
