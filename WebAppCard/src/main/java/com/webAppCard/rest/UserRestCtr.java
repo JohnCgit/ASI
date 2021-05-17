@@ -37,9 +37,9 @@ public class UserRestCtr {
 		return LUser;
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{pwd}/{mail}")
-	public void createUser(@PathVariable String name,@PathVariable String pwd,@PathVariable String mail) {
-		System.out.println(uService.addUser(name, pwd, mail));
+	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{surname}/{password}")
+	public void createUser(@PathVariable String name,@PathVariable String surname,@PathVariable String password) {
+		System.out.println(uService.addUser(name, password, surname));
 		System.out.println("user added");
 	}
 	

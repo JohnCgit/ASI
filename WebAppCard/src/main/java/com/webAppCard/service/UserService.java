@@ -84,7 +84,7 @@ public class UserService {
 		Optional<User> oUser=uRepository.findByUsername(username);
 		if (oUser.isPresent()) {
 			User u=oUser.get();
-			if (u.getPwd().equals(password)) {
+			if (u.getPassword().equals(password)) {
 				res=true;
 			}
 		}

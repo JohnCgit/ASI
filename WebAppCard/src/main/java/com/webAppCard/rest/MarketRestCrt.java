@@ -1,11 +1,14 @@
 package com.webAppCard.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webAppCard.model.Card;
 import com.webAppCard.model.Transaction;
 import com.webAppCard.service.CardService;
 import com.webAppCard.service.MarketService;
@@ -21,9 +24,9 @@ public class MarketRestCrt {
 	
 	// Permet de récupérer l'ensemble des cartes en vente sur le marché
 	@RequestMapping(method=RequestMethod.GET,value="/market/getAll")
-	public void getAllCard() 
+	public List<Transaction> getAllCard() 
 	{
-		mService.getAll();
+		return mService.getAll();
 	}
 	
 	// Réalise la mise sur le marché de la carte d'id idCard par l'utilisateur d'id idSeller
