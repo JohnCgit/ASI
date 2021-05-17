@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/form.js"></script>
+    <title>Subscription</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Subscribe</h1>
+    </div>
+    <div class="formSubcription">
+        <form onsubmit="return setActionSub(this)" method="post">
+            <label for="Name">Name</label>
+            <input required name="Name" type="text" id="Name" />
+            <br/>
+            <br/>
+            <label for="Surname">Surname</label>
+            <input required name="Surname" type="text" id="Surname" />
+            <br/>
+            <br/>
+            <label for="Password">Password</label>
+            <input required name="Password" type="text" id="Password" />
+            <br/>
+            <br/>
+            <label for="Re-Password">Re-Password</label>
+            <input required name="Re-Password" type="text" id="Re-Password" />
+            <br/>
+            <br/>
+            <input value="+OK" type="submit" />
+        </form>
+        <a href="index.html"><button>Cancel</button></a>
+    </div>
+</body>

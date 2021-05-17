@@ -15,8 +15,8 @@ public class AuthRestCrt {
 	AuthService aService;
 	
 	@RequestMapping(method=RequestMethod.POST,value="/login/{user}/{pwd}")
-	public void isUser(@PathVariable String user, @PathVariable String pwd) {
-		aService.verifUser(user, pwd);;
+	public boolean isUser(@PathVariable String user, @PathVariable String pwd) {
+		return aService.verifUser(user, pwd);
 	}
 
 
