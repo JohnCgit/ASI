@@ -1,3 +1,4 @@
+var port = 8083;
 //Supprime tous les enfants du noeud d'id arg
 function funClear(arg) {
     myNode = document.getElementById(arg);
@@ -44,7 +45,7 @@ function funAchat() {
     funClear("content_body");
     document.getElementById("content_header").textContent = ('Achat');
     //createFillTab(loadRessource(/Market/GetALL))
-    createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")), true);
+    createFillTab(JSON.parse(loadRessource(`http://127.0.0.1:${port}/market/getAll`, "GET")), true);
     funReturnDefault();
 }
 
@@ -54,8 +55,8 @@ function funAchat() {
 function funVente() {
     funClear("content_body");
     document.getElementById("content_header").textContent = ('Vente');
-    //createFillTab(loadRessource("/User/GetCollection","GET"))
-    createFillTab(JSON.parse(loadRessource("ListCard.json", "GET")), false);
+    var idUser = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET")).id;
+    createFillTab(JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/getAllCard/${idUser}`, "GET")), false);
     funReturnDefault();
 
 }
@@ -125,6 +126,7 @@ function funUserDefault() {
 // Lorsque l'utilisateur est connecté fait apparaître son nom et sa cagnotte dans la zone content_header
 function funUser(Surname, Password) {
     funClear("user_info")
+    var user = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET"));
     var money = document.createElement("p");
     money.textContent = user.money;
     document.getElementById("user_info").appendChild(money);
@@ -133,24 +135,23 @@ function funUser(Surname, Password) {
     profil.textContent = user.Name;
     document.getElementById("user_info").appendChild(profil);
 }
-var user = { money: 500, Name: "Maurice" };
 
 // Permet de gérer l'achat d'une carte côté client et côté serveur 
 function achat(TransactionId) {
     var Surname = new URLSearchParams(window.location.search).get("Surname");
     var Password = new URLSearchParams(window.location.search).get("Password");
-    //loadRessource(`/market/buy/${TransactionId}/${idUser}`,"POST");
+    var idUser = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`, "GET")).id;
+    loadRessource(`http://127.0.0.1:${port}/market/buy/${TransactionId}/${idUser}`, "POST");
     funClear(TransactionId);
     document.getElementById(TransactionId).parentElement.remove();
-    user.money -= 100;
     funUser();
 }
 
 // Permet de gérer la vente d'une carte côté client et côté serveur 
 function vente(CardId) {
-    var Surname = new URLSearchParams(window.location.search).get("Surname");
-    var Password = new URLSearchParams(window.location.search).get("Password");
-    //loadRessource(`/market/sell/${CardId}/${idUser}`,"POST");
+    var Name = new URLSearchParams(window.location.search).get("Name");
+    var idUser = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/name/${Name}`)).id;
+    loadRessource(`http://127.0.0.1:${port}/market/sell/${CardId}/${idUser}`, "POST");
     funClear(CardId);
     document.getElementById(CardId).parentElement.remove();
 }
@@ -206,11 +207,12 @@ function createFillTab(ListCard, bool) {
 //sinon le contenu_header contient des liens vers les pages de connexion et d'inscription 
 window.onload = function() {
     funDefault();
-    var Surname = new URLSearchParams(window.location.search).get("Surname");
+    var Name = new URLSearchParams(window.location.search).get("Surname");
     var Password = new URLSearchParams(window.location.search).get("Password");
-    //if loadRessource(`/verifUser/${Surname}/${Password}`,'GET') = true
     if (Surname != null) {
-        funUser(Surname, Password);
+        if (loadRessource(`http://127.0.0.1:${port}/login/${Name}/${Password}`) == "true") {
+            funUser(Surname, Password);
+        }
     } else {
         funUserDefault();
     }
@@ -218,7 +220,7 @@ window.onload = function() {
 
 // Si le client n'est pas connecté, le redirige vers la page de connexion
 window.onclick = function() {
-    var Surname = new URLSearchParams(window.location.search).get("Surname");
+    var Name = new URLSearchParams(window.location.search).get("Surname");
     var Password = new URLSearchParams(window.location.search).get("Password");
     //if loadRessource(`/verifUser/${Surname}/${Password}`,'GET') = true
     if (Surname == null) {
