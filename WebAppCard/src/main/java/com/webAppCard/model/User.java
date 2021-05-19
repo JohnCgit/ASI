@@ -20,6 +20,7 @@ public class User {
 
 	@ElementCollection
 	private List<Integer> Collection;
+	private List<Integer> Energy;
 	private int Money;
 	
 	public User() {
@@ -28,9 +29,10 @@ public class User {
 	public User(String name, String password, String surname) {
 		super();
 		this.name=name;
-		this.password=password;
 		this.surname=surname;
-		this.Collection=new ArrayList<Integer>();	
+		this.password=password;
+		this.Collection=new ArrayList<Integer>();
+		this.Energy=new ArrayList<Integer>();
 		this.Money=0;
 	}
 
