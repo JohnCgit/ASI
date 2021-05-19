@@ -16,21 +16,25 @@ public class Card {
 	private String Affinity;
 	private int Energy;
 	private int HP;
+	private int Strength;
 	private int Price;
+	private String imgUrl;
 	
 	public Card() {
 	}
 
-	public Card(String name, String Family, String Affinity, int Energy, int HP, int Price) {
+	public Card(String name, String Family, String Affinity, int Energy, int HP, int Strength, int Price, String imgUrl) {
 		super();
 		this.name = name;
 		this.Family = Family;
 		this.Affinity = Affinity;
 		this.Energy = Energy;
 		this.HP = HP;
+		this.Strength = Strength;
 		this.Price = Price;
+		this.imgUrl = imgUrl;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -71,8 +75,24 @@ public class Card {
 		this.HP = HP;
 	}
 	
+	public int getStrength() {
+		return Strength;
+	}
+
+	public void setStrength(int Strength) {
+		this.Strength = Strength;
+	}
+	
 	public int getPrice() {
 		return Price;
+	}
+	
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public void setPrice(int Price) {
