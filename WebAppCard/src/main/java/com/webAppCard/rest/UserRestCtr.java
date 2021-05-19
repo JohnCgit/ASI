@@ -18,45 +18,41 @@ import com.webAppCard.service.UserService;
 public class UserRestCtr {
 	
 	@Autowired
-    UserService uService;
-	CardService cService;
-	
+	UserService uService;
+	// CardService cService;
+
 	@RequestMapping(method=RequestMethod.GET, value="/user/id/{id}")
 	public User getUserById(@PathVariable int id){
 		User u=uService.getUserById(Integer.valueOf(id));
 	    return u;
 	}
-	
+
 	@RequestMapping(method=RequestMethod.GET, value="/user/name/{name}")
 	public User getUserByName(@PathVariable String name) {
 		User u=uService.getUserByName(name);
 		System.out.println(u);
 		return u;
 	}
-	
+
 	@RequestMapping(method=RequestMethod.GET, value="/user/getAll")
 	public List<User> getAllUsers() {
 		List<User> LUser;
 		LUser=uService.getAllUsers();
 		return LUser;
 	}
-	
+
 	@RequestMapping(method=RequestMethod.GET, value="/user/getAllCard/{idUser}")
-	public List<Card> getAllCard(int idUser) {
-		List<Card> res = new ArrayList<Card>();
-		List<Integer> Li =uService.getUserById(idUser).getCollection();
-		for(int id: Li) {
-			res.add(cService.getCard(id));
-		}
+	public List<Integer> getAllCard(int idUser) {
+		List<Integer> res =uService.getUserById(idUser).getCollection();
 		return res;
 	}
-	
+
 	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{surname}/{password}")
 	public boolean  createUser(@PathVariable String name,@PathVariable String surname,@PathVariable String password) {
 		return uService.addUser(name, password, surname);
-		
+
 	}
-	
+
 	@RequestMapping(method=RequestMethod.POST, value="/user/delete/{name}")
 	public void deleteUser(@PathVariable String name) {
 		User u = getUserByName(name);
