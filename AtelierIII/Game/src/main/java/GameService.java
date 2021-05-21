@@ -1,8 +1,22 @@
-import org.springframework.boot.SpringApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class GameService {
+	
+	@Autowired
+	RestTemplate restTemplate;	
+	
+	public String getUserCard() {		//avoir l'énergie
+		RestTemplate resttemplate = new RestTemplate();
+		return resttemplate.getForObject("http://localhost:8080/user/card", String.class);
+	 }
+	
+	public Card getCard(int id) {		//avoir la carte
+		RestTemplate resttemplate = new RestTemplate();
+		return resttemplate.getForObject("http://localhost:8080/card/{id}", Card.class, id);
+	 }
 	
 	public int matchupAffinity(String affA, String affB) {
 		int coeff = 1;	//coeff d'attaque qui va changer en fonction d'avantage/désavantage d'affinité
@@ -15,51 +29,66 @@ public class GameService {
 		return coeff;
 	}
 	
-	public String Round(Card cardA, Card cardB) {
+	public String Victor(Card card) {
+		return "Victoire de : " + card.name + "!";
+	}
+	
+	public String Jeu(int idCardA, int idCardB) {
+		
+		Card cardA = getCard(idCardA);
+		Card cardB = getCard(idCardB);
+		
+		String des = "";
 		
 		int HPa = cardA.getHP();
 		int HPb = cardB.getHP();
 		
-		while (HPa != 0 || HPb != 0) {
+		while (HPa > 0 && HPb > 0) {
+			des += Rounds(cardA,cardB,HPa,HPb);
+		}
+		
+		if (HPa == 0) {
+			des += Victor(cardB);
+		}
+		
+		else if (HPb ==0) {
+			des +=Victor(cardA);
+		}
+		
+		return des;
+		
+	}
+	
+	public String Rounds(Card cardA, Card cardB, int HPa, int HPb) {
 		
 		String affA = cardA.getAffinity();
 		String affB = cardB.getAffinity();
+		
 		int coeffA = matchupAffinity(affA,affB);
 		int coeffB = matchupAffinity(affB,affA);
 		
 		int degA = coeffA * cardA.getStrength();
 		int degB = coeffB * cardB.getStrength();
 		
-		HPa = HPa - degA;
-		HPb = HPb - degB;
+		int nCoupsA = (int)(Math.random() * 6 + 1);
+		int nCoupsB = (int)(Math.random() * 6 + 1);
+		
+		HPa = HPa - (nCoupsA*degA);
+		HPb = HPb - (nCoupsB*degB);
+		
+		String msg = cardA.name + "a perdu " + nCoupsB*degB + "points de vie ! " + "\n" + cardB.name + "a perdu " + nCoupsA*degA + "points de vie ! \n ";
 		
 		cardA.setHP(HPa);
 		cardB.setHP(HPb);
 		
-		if (HPa >= 0 && HPb >= 0) {
-			
-			System.out.println("HPa: " + HPa);
-			System.out.println("HPb: " + HPb);
-			
-		}
-		
-		else if (HPa == 0) {
-			return "Victoire de " + cardB.name + "!";
-		}
-		
-		else {
-			return "Victoire de " + cardA.name + "!";
-		}
-		}
+		return msg;
 		
 	}
 	
 	
-	public static void main(String[] args) {
+	 /*public static void main(String[] args) {
 		System.out.println(Affinity.FEU.compareTo(Affinity.PLANTE));
 		
-	}
+	} */
 	
-	
-
 }
