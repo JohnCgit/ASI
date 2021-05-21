@@ -16,8 +16,10 @@ import org.springframework.web.client.RestTemplate;
 public class MarketService {
 	@Autowired
 	TransactionRepository tRepository;
+	
+	
 	 private final RestTemplate restTemplate;
-
+	 public static int ReverseProxyPort = 8081;
 	
 	
 	public MarketService(RestTemplateBuilder restTemplateBuilder) {
@@ -55,9 +57,9 @@ public class MarketService {
 	// Mise à jour de la cagnotte de l'acheteur et du vendeur
 	public void buyCard(int idTransaction, int idBuyer) {
 		Transaction t = getTransaction(idTransaction);
-		this.restTemplate.put("/user/addCard/{id}",t.getCard());
-		int price = this.restTemplate.getForObject("/card/price/{id}", Integer.class,t.getCard());
-		this.restTemplate.put("/user/updateMoney/{id}/{balance}",idBuyer,-price);
-		this.restTemplate.put("/user/updateMoney/{id}/{balance}",t.getSellerId(),price);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/addCard/"+t.getIdCard(),null);
+		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/price/{id}", Integer.class,t.getIdCard());
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idBuyer+"/"+-price,null);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+t.getSellerId()+"/"+price,null);
 	}
 }

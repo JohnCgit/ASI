@@ -30,8 +30,9 @@ public class Transaction {
 	}
 
 
-	public Integer getCard() {
+	public Integer getIdCard() {
 		return cardId;
 	}
+
 
 }
