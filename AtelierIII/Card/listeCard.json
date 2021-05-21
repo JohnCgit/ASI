@@ -1,0 +1,32 @@
+{
+    "name":"jdoe",
+	"family":"jFamily",
+	"affinity":"fire",
+	"energy":100,
+	"hP":200,
+	"strength":10,
+	"price":100,
+	"imgUrl":"https://avatars.githubusercontent.com/u/594107?v=4"
+}
+
+{
+    "name":"zactra",
+	"family":"vou",
+	"affinity":"plante",
+	"energy":50,
+	"hP":250,
+	"strength":30,
+	"price":70,
+	"imgUrl":"https://www.waouo.com/wp-content/uploads/2015/10/herbizarre.png"
+}
+
+{
+    "name":"amine",
+	"family":"lunettes",
+	"affinity":"eau",
+	"energy":70,
+	"hP":120,
+	"strength":5,
+	"price":100,
+	"imgUrl":"https://www.zoologiste.com/images/xl/grenouille.jpg"
+}
