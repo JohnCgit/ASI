@@ -12,26 +12,26 @@ public class Card {
 	@GeneratedValue
 	private int id;
 	private String name;
-	private String Family;
-	private String Affinity;
-	private int Energy;
-	private int HP;
-	private int Strength;
-	private int Price;
+	private String family;
+	private String affinity;
+	private int energy;
+	private int hp;
+	private int strength;
+	private int price;
 	private String imgUrl;
 	
 	public Card() {
 	}
 
-	public Card(String name, String Family, String Affinity, int Energy, int HP, int Strength, int Price, String imgUrl) {
+	public Card(String name, String Family, String Affinity, int Energy, int hp, int Strength, int Price, String imgUrl) {
 		super();
 		this.name = name;
-		this.Family = Family;
-		this.Affinity = Affinity;
-		this.Energy = Energy;
-		this.HP = HP;
-		this.Strength = Strength;
-		this.Price = Price;
+		this.family = Family;
+		this.affinity = Affinity;
+		this.energy = Energy;
+		this.hp = hp;
+		this.strength = Strength;
+		this.price = Price;
 		this.imgUrl = imgUrl;
 	}
 	
@@ -44,47 +44,47 @@ public class Card {
 	}
 
 	public String getFamily() {
-		return Family;
+		return family;
 	}
 
 	public void setFamily(String Family) {
-		this.Family = Family;
+		this.family = Family;
 	}
 	
 	public String getAffinity() {
-		return Affinity;
+		return affinity;
 	}
 
 	public void setAffinity(String Affinity) {
-		this.Affinity = Affinity;
+		this.affinity = Affinity;
 	}
 
 	public int getEnergy() {
-		return Energy;
+		return energy;
 	}
 
 	public void setEnergy(int Energy) {
-		this.Energy = Energy;
+		this.energy = Energy;
 	}
 
 	public int getHP() {
-		return HP;
+		return hp;
 	}
 
-	public void setHP(int HP) {
-		this.HP = HP;
+	public void setHP(int hp) {
+		this.hp = hp;
 	}
 	
 	public int getStrength() {
-		return Strength;
+		return strength;
 	}
 
 	public void setStrength(int Strength) {
-		this.Strength = Strength;
+		this.strength = Strength;
 	}
 	
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 	
 	public String getImgUrl() {
@@ -96,7 +96,7 @@ public class Card {
 	}
 
 	public void setPrice(int Price) {
-		this.Price = Price;
+		this.price = Price;
 	}
 	
 	public int getId() {
@@ -109,6 +109,6 @@ public class Card {
 
 	@Override
 	public String toString() {
-		return "CARD ["+this.id+"]: name:"+this.name+"]: Family:"+this.Family+", Affinity:"+this.Affinity+", Energy:"+this.Energy+", HP:"+this.HP+", Price:"+this.Price;
+		return "CARD ["+this.id+"]: name:"+this.name+"]: Family:"+this.family+", Affinity:"+this.affinity+", Energy:"+this.energy+", HP:"+this.hp+", Price:"+this.price;
 	}
 }
