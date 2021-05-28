@@ -68,6 +68,11 @@ public class UtilisateurRestCrt {
 		return res;
 	}
 	
+	@RequestMapping(method=RequestMethod.PUT, value="/removeCard/{idUser}/{idCard}")
+	public void getCollection(@PathVariable int idUser,@PathVariable int idCard) {
+		uService.removeCard(idCard, idUser);
+	}
+	
 	@RequestMapping(method=RequestMethod.PUT, value="/addCard/{idUser}/{idCard}")
 	public void getCollection(@PathVariable int idUser,@PathVariable int idCard) {
 		uService.addCard(idCard, idUser);
