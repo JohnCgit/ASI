@@ -49,6 +49,10 @@ public class Utilisateur {
 		this.collection.add(idCard);
 	}
 	
+	public void removeCard(int idCard) {
+		this.collection.remove(idCard)
+	}
+	
 	public List<Integer> getCollection() {
 		return this.collection;
 	}
