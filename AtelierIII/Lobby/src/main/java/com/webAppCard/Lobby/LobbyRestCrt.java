@@ -14,17 +14,17 @@ public class LobbyRestCrt {
 	@Autowired
 	LobbyService lService;
 	
-	@RequestMapping(method=RequestMethod.GET,value="/Lobby/All")
+	@RequestMapping(method=RequestMethod.GET,value="/All")
 	public List<Room>getAllRoom() {
 		return lService.getAllRoom();
 	}
 	
-	@RequestMapping(method=RequestMethod.GET,value="/Lobby/join/{idRoom}/{idPlayer}/{idCard}")
+	@RequestMapping(method=RequestMethod.GET,value="/join/{idRoom}/{idPlayer}/{idCard}")
 	public void joinRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
 		lService.joinRoom(idRoom,idPlayer,idCard);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/Lobby/create/{idRoom}/{idPlayer}/{idCard}")
+	@RequestMapping(method=RequestMethod.PUT,value="/create/{idRoom}/{idPlayer}/{idCard}")
 	public void createRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
 		lService.createRoom(idRoom,idPlayer,idCard);
 	}
