@@ -12,13 +12,13 @@ package com.webAppCard.Card;
       @Autowired
       CardService cService;
       
-      @RequestMapping(method=RequestMethod.POST,value="/Card/New")
+      @RequestMapping(method=RequestMethod.POST,value="/New")
       public void createCard(@RequestBody Card Card) {
     	  System.out.print(Card);
     	  cService.createCard(Card);
       }
       
-      @RequestMapping(method=RequestMethod.GET,value="/Card/{id}")
+      @RequestMapping(method=RequestMethod.GET,value="/{id}")
       public Card getCard(@PathVariable int id) {
           Card c=cService.getCard(id);
           System.out.print("ok");
@@ -26,12 +26,12 @@ package com.webAppCard.Card;
           return c;
       }
          
-      @RequestMapping(method=RequestMethod.GET,value="/Card/Energy/{id}")
+      @RequestMapping(method=RequestMethod.GET,value="/Energy/{id}")
       public int getEnergy(@PathVariable int id) {
           return cService.getEnergy(Integer.valueOf(id));
       }
       
-      @RequestMapping(method=RequestMethod.GET,value="/Card/Price/{id}")
+      @RequestMapping(method=RequestMethod.GET,value="/Price/{id}")
       public int getPrice(@PathVariable int id) {
           return cService.getPrice(Integer.valueOf(id));
       }
