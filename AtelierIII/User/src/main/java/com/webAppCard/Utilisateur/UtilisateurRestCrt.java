@@ -22,20 +22,20 @@ public class UtilisateurRestCrt {
 // GetUser
 //////////////////////////////////////
 	
-	@RequestMapping(method=RequestMethod.GET, value="/user/id/{id}")
+	@RequestMapping(method=RequestMethod.GET, value="/id/{id}")
 	public Utilisateur getUserById(@PathVariable int id){
 		Utilisateur u=uService.getUserById(Integer.valueOf(id));
 	    return u;
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/user/name/{name}")
+	@RequestMapping(method=RequestMethod.GET, value="/name/{name}")
 	public Utilisateur getUserByName(@PathVariable String name) {
 		Utilisateur u=uService.getUserByName(name);
 		System.out.println(u);
 		return u;
 	}
 
-	@RequestMapping(method=RequestMethod.GET, value="/user/getAll")
+	@RequestMapping(method=RequestMethod.GET, value="/getAll")
 	public List<Utilisateur> getAllUsers() {
 		List<Utilisateur> LUser;
 		LUser=uService.getAllUsers();
@@ -46,13 +46,13 @@ public class UtilisateurRestCrt {
 // Modif User
 //////////////////////////////////////
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/create/{name}/{surname}/{password}")
+	@RequestMapping(method=RequestMethod.POST, value="/create/{name}/{surname}/{password}")
 	public void  createUser(@PathVariable String name,@PathVariable String surname,@PathVariable String password) {
 		System.out.print(name);
 		uService.addUser(name, password, surname);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="/user/delete/{name}")
+	@RequestMapping(method=RequestMethod.POST, value="/delete/{name}")
 	public void deleteUser(@PathVariable String name) {
 		Utilisateur u = getUserByName(name);
 		uService.deleteUser(u);
@@ -62,13 +62,13 @@ public class UtilisateurRestCrt {
 // Collection
 //////////////////////////////////////
 	
-	@RequestMapping(method=RequestMethod.GET, value="/user/getCollection/{idUser}")
+	@RequestMapping(method=RequestMethod.GET, value="/getCollection/{idUser}")
 	public List<Integer> getCollection(@PathVariable int idUser) {
 		List<Integer> res =uService.getCollection(idUser);
 		return res;
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/user/addCard/{idUser}/{idCard}")
+	@RequestMapping(method=RequestMethod.PUT, value="/addCard/{idUser}/{idCard}")
 	public void getCollection(@PathVariable int idUser,@PathVariable int idCard) {
 		uService.addCard(idCard, idUser);
 	}
@@ -76,12 +76,12 @@ public class UtilisateurRestCrt {
 // Money
 //////////////////////////////////////
 	
-	@RequestMapping(method=RequestMethod.POST, value="/user/UpdateMoney/{id}/{money}")
+	@RequestMapping(method=RequestMethod.POST, value="/UpdateMoney/{id}/{money}")
 	public void UpdateMoney(@PathVariable Integer id, @PathVariable Integer money) {
 		uService.updateMoney(id, money);
 	}	
 	
-	@RequestMapping(method=RequestMethod.GET, value="user/getMoney/{idUser}")
+	@RequestMapping(method=RequestMethod.GET, value="/getMoney/{idUser}")
 	public int getMoney(@PathVariable Integer idUser) {
 		return uService.getMoney(idUser);
 	}
@@ -90,13 +90,13 @@ public class UtilisateurRestCrt {
 // Card
 //////////////////////////////////////
 	
-//	@RequestMapping(method=RequestMethod.GET, value="user/getEnergy/{idUser}/{idCard}")
+//	@RequestMapping(method=RequestMethod.GET, value="/getEnergy/{idUser}/{idCard}")
 //	public int GetEnergy(@PathVariable Integer idUser,@PathVariable Integer idCard) {
 //		return uService.getEnergy(idUser, idCard);
 //	}
 //
 //	
-//	@RequestMapping(method=RequestMethod.GET, value="user/UpdateEnergy/{idUser}/{idCard}")
+//	@RequestMapping(method=RequestMethod.GET, value="/UpdateEnergy/{idUser}/{idCard}")
 //	public void updateEnergy(@PathVariable int idUser, @PathVariable int idCard) {
 //		uService.updateEnergy(idUser, idCard);
 //	}
