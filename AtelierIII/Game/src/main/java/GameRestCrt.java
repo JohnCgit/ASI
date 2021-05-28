@@ -11,7 +11,7 @@ public class GameRestCrt {
 	@Autowired
 	private GameService gs;
 	
-	@RequestMapping(method=RequestMethod.GET,value="/game/{idCardA}/{idCardB}")
+	@RequestMapping(method=RequestMethod.GET,value="/{idCardA}/{idCardB}")
 	public String partie(@PathVariable int idCardA, @PathVariable int idCardB) {
 		return gs.Jeu(idCardA, idCardB);
 	}
