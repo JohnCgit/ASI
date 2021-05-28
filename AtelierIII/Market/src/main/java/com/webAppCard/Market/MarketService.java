@@ -53,11 +53,11 @@ public class MarketService {
 	// Mise à jour de la cagnotte de l'acheteur et du vendeur
 	public void buyCard(int idTransaction, int idBuyer) {
 		Transaction t = getTransaction(idTransaction);
-		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/addCard/"+idBuyer+"/"+t.getIdCard(),null);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/addCard/"+idBuyer+"/"+t.getIdCard(),null);
 		System.out.println(t);
 		int idCard = t.getIdCard();
 		System.out.print(idCard);
-		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/Card/Price/"+idCard, Integer.class);
+		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/Price/"+idCard, Integer.class);
 		System.out.print(price);
 		//this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/updateMoney/"+idBuyer+"/"+-price,null);
 		//this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/updateMoney/"+t.getSellerId()+"/"+price,null);
