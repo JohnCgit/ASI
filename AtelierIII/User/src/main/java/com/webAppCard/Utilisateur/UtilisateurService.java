@@ -129,6 +129,12 @@ public class UtilisateurService {
 		uRepository.save(getUserById(idUser));
 	}
 	
+		public void removeCard(int idCard, int idUser) {// enleve une carte dans la collection de l'utilisateur
+		Utilisateur u=getUserById(idUser);
+		u.removeCard(idCard);
+		uRepository.save(getUserById(idUser));
+	}
+	
 	public List<Integer> getCollection(int idUser) {
 		Optional<Utilisateur> oUser=uRepository.findById(idUser);
 		List<Integer> List = new ArrayList<Integer>();
