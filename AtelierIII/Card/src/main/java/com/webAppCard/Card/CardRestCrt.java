@@ -14,6 +14,7 @@ package com.webAppCard.Card;
       
       @RequestMapping(method=RequestMethod.POST,value="/Card/New")
       public void createCard(@RequestBody Card Card) {
+    	  System.out.print(Card);
     	  cService.createCard(Card);
       }
       

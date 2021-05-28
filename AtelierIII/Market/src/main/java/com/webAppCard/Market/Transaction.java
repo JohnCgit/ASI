@@ -13,13 +13,12 @@ public class Transaction {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@OneToOne
 	private Integer cardId;
 	private Integer sellerId;
 	
+	public Transaction() {}
 	public Transaction(int cardId,int sellerId) 
 	{
-		super();
 		this.cardId = cardId;
 		this.sellerId = sellerId;
 	}

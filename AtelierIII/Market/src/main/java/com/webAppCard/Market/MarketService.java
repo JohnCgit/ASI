@@ -19,7 +19,7 @@ public class MarketService {
 	
 	
 	 private final RestTemplate restTemplate;
-	 public static int ReverseProxyPort = 8081;
+	 public static int ReverseProxyPort = 8082;
 	
 	
 	public MarketService(RestTemplateBuilder restTemplateBuilder) {
@@ -41,13 +41,9 @@ public class MarketService {
 
 	// Permet de récupérer l'ensemble des transactions sur le marché
 	public List<Transaction> getAll() {
-		int id = 0;
-		Transaction t = getTransaction(id);
 		List<Transaction> res = new LinkedList<Transaction>();
-		while(t != null) 
-		{
+		for(Transaction t:tRepository.findAll()) {
 			res.add(t);
-			t = getTransaction(id++);
 		}
 		return res;
 	}
@@ -57,9 +53,13 @@ public class MarketService {
 	// Mise à jour de la cagnotte de l'acheteur et du vendeur
 	public void buyCard(int idTransaction, int idBuyer) {
 		Transaction t = getTransaction(idTransaction);
-		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/addCard/"+t.getIdCard(),null);
-		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/price/{id}", Integer.class,t.getIdCard());
-		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idBuyer+"/"+-price,null);
-		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+t.getSellerId()+"/"+price,null);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/addCard/"+idBuyer+"/"+t.getIdCard(),null);
+		System.out.println(t);
+		int idCard = t.getIdCard();
+		System.out.print(idCard);
+		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/Card/Price/"+idCard, Integer.class);
+		System.out.print(price);
+		//this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/updateMoney/"+idBuyer+"/"+-price,null);
+		//this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/updateMoney/"+t.getSellerId()+"/"+price,null);
 	}
 }

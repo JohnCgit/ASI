@@ -1,4 +1,4 @@
-{
+[{
     "name":"jdoe",
 	"family":"jFamily",
 	"affinity":"fire",
@@ -7,7 +7,7 @@
 	"strength":10,
 	"price":100,
 	"imgUrl":"https://avatars.githubusercontent.com/u/594107?v=4"
-}
+},
 
 {
     "name":"zactra",
@@ -18,7 +18,7 @@
 	"strength":30,
 	"price":70,
 	"imgUrl":"https://www.waouo.com/wp-content/uploads/2015/10/herbizarre.png"
-}
+},
 
 {
     "name":"amine",
@@ -29,4 +29,4 @@
 	"strength":5,
 	"price":100,
 	"imgUrl":"https://www.zoologiste.com/images/xl/grenouille.jpg"
-}
+}]
