@@ -32,13 +32,20 @@ public class LobbyService {
 		}
 		return res;
 	}
-	public String joinRoom(int idRoom, int idPlayer2, int idCardPlayer2) {
+//	public String joinRoom(int idRoom, int idPlayer2, int idCardPlayer2) {
+//		Room r = getRoom(idRoom);
+//		r.setPlayer2(idPlayer2, idCardPlayer2);
+//		rRepository.save(r);
+//		return startGame(idRoom);
+//	}
+	public void joinRoom(int idRoom, int idPlayer2, int idCardPlayer2) {
 		Room r = getRoom(idRoom);
 		r.setPlayer2(idPlayer2, idCardPlayer2);
 		rRepository.save(r);
-		return startGame(idRoom);
 	}
 	public void createRoom(int idPlayer, int idCard, int mise) {
+		//hasCard
+		//hasMoney
 		Room res = new Room(idPlayer,idCard,mise);
 		rRepository.save(res);
 	}

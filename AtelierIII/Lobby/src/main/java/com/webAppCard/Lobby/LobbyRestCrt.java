@@ -19,12 +19,12 @@ public class LobbyRestCrt {
 		return lService.getAllRoom();
 	}
 	
-	@RequestMapping(method=RequestMethod.GET,value="/join/{idRoom}/{idPlayer}/{idCard}")
+	@RequestMapping(method=RequestMethod.PUT,value="/join/{idRoom}/{idPlayer}/{idCard}")
 	public void joinRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
 		lService.joinRoom(idRoom,idPlayer,idCard);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/create/{idRoom}/{idPlayer}/{idCard}")
+	@RequestMapping(method=RequestMethod.POST,value="/create/{idPlayer}/{idCard}")
 	public void createRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
 		lService.createRoom(idRoom,idPlayer,idCard);
 	}

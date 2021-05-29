@@ -11,9 +11,9 @@ import javax.persistence.Id;
 public class Transaction {
 	@Id
 	@GeneratedValue
-	private Integer id;
-	private Integer cardId;
-	private Integer sellerId;
+	private int id;
+	private int cardId;
+	private int sellerId;
 	
 	public Transaction() {}
 	public Transaction(int cardId,int sellerId) 

@@ -1,7 +1,7 @@
 package com.webAppCard.Market;
 
 
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -41,11 +41,7 @@ public class MarketService {
 
 	// Permet de récupérer l'ensemble des transactions sur le marché
 	public List<Transaction> getAll() {
-		List<Transaction> res = new LinkedList<Transaction>();
-		for(Transaction t:tRepository.findAll()) {
-			res.add(t);
-		}
-		return res;
+		return tRepository.findAll();
 	}
 
 	
@@ -56,10 +52,11 @@ public class MarketService {
 		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/addCard/"+idBuyer+"/"+t.getIdCard(),null);
 		System.out.println(t);
 		int idCard = t.getIdCard();
-		System.out.print(idCard);
+		System.out.print("http://127.0.0.1:"+ReverseProxyPort+"/card/Price/"+idCard);
 		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/Price/"+idCard, Integer.class);
 		System.out.print(price);
-		//this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/updateMoney/"+idBuyer+"/"+-price,null);
-		//this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/user/updateMoney/"+t.getSellerId()+"/"+price,null);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idBuyer+"/"+-price,null);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+t.getSellerId()+"/"+price,null);
+		this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/removeCard/"+t.getSellerId()+"/"+t.getIdCard(),null);
 	}
 }

@@ -37,9 +37,7 @@ public class UtilisateurRestCrt {
 
 	@RequestMapping(method=RequestMethod.GET, value="/getAll")
 	public List<Utilisateur> getAllUsers() {
-		List<Utilisateur> LUser;
-		LUser=uService.getAllUsers();
-		return LUser;
+		return uService.getAllUsers();
 	}
 	
 //////////////////////////////////////
@@ -81,7 +79,7 @@ public class UtilisateurRestCrt {
 // Money
 //////////////////////////////////////
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/UpdateMoney/{id}/{money}")
+	@RequestMapping(method=RequestMethod.PUT, value="/updateMoney/{id}/{money}")
 	public void UpdateMoney(@PathVariable Integer id, @PathVariable Integer money) {
 		uService.updateMoney(id, money);
 	}	

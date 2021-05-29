@@ -87,9 +87,7 @@ public class UtilisateurService {
 	}
 	
 	public List<Utilisateur> getAllUsers(){ //retourne tout les utilisateurs
-		List<Utilisateur> LUser;
-		LUser=uRepository.findAll();
-		return LUser;
+		return uRepository.findAll();
 	}
 	
 //////////////////////////////////////
