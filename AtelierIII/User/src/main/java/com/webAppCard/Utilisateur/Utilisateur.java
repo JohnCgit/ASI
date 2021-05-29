@@ -50,7 +50,7 @@ public class Utilisateur {
 	}
 	
 	public void removeCard(int idCard) {
-		this.collection.remove(idCard)
+		this.collection.remove(idCard);
 	}
 	
 	public List<Integer> getCollection() {

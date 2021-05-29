@@ -6,9 +6,9 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+//import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+//import org.springframework.web.client.RestTemplate;
 
 
 @Service
@@ -17,16 +17,16 @@ public class UtilisateurService {
 	@Autowired
 	UtilisateurRepository uRepository;
 	
-	private final RestTemplate restTemplate;
+	//private final RestTemplate restTemplate;
 
 //////////////////////////////////////
 // Rest template
 //////////////////////////////////////
 	
-	public UtilisateurService(RestTemplateBuilder restTemplateBuilder) { // Gestion du rest template
-        this.restTemplate = restTemplateBuilder.build();
-    }
-	
+//	public UtilisateurService(RestTemplateBuilder restTemplateBuilder) { // Gestion du rest template
+//        this.restTemplate = restTemplateBuilder.build();
+//    }
+//	
 //////////////////////////////////////
 // User Init
 //////////////////////////////////////

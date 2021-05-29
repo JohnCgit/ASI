@@ -69,19 +69,19 @@ public class UtilisateurRestCrt {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/removeCard/{idUser}/{idCard}")
-	public void getCollection(@PathVariable int idUser,@PathVariable int idCard) {
+	public void removeCard(@PathVariable int idUser,@PathVariable int idCard) {
 		uService.removeCard(idCard, idUser);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/addCard/{idUser}/{idCard}")
-	public void getCollection(@PathVariable int idUser,@PathVariable int idCard) {
+	public void addCard(@PathVariable int idUser,@PathVariable int idCard) {
 		uService.addCard(idCard, idUser);
 	}
 //////////////////////////////////////
 // Money
 //////////////////////////////////////
 	
-	@RequestMapping(method=RequestMethod.POST, value="/UpdateMoney/{id}/{money}")
+	@RequestMapping(method=RequestMethod.PUT, value="/UpdateMoney/{id}/{money}")
 	public void UpdateMoney(@PathVariable Integer id, @PathVariable Integer money) {
 		uService.updateMoney(id, money);
 	}	
