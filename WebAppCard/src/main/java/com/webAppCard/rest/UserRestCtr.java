@@ -1,6 +1,5 @@
 package com.webAppCard.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webAppCard.model.Card;
 import com.webAppCard.model.User;
-import com.webAppCard.service.CardService;
 import com.webAppCard.service.UserService;
 
 @RestController
@@ -19,7 +16,6 @@ public class UserRestCtr {
 	
 	@Autowired
 	UserService uService;
-	// CardService cService;
 
 	@RequestMapping(method=RequestMethod.GET, value="/user/id/{id}")
 	public User getUserById(@PathVariable int id){

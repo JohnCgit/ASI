@@ -30,5 +30,9 @@ public class LobbyRestCrt {
 		return lService.createRoom(idPlayer,idCard,mise);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST,value="/play/{idRoom}")
+	public String play(@PathVariable int idRoom) {
+		return lService.play(idRoom);
+	}
 	
 }

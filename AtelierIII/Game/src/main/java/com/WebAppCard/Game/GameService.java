@@ -16,13 +16,13 @@ public class GameService {
 		return resttemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/"+id, Card.class);
 	 }
 	
-	public int matchupAffinity(Affinity affA, Affinity affB) {
-		int coeff = 1;	//coeff d'attaque qui va changer en fonction d'avantage/désavantage d'affinité
+		public int matchupAffinity(Affinity affA, Affinity affB) {
+		int coeff = 2;	//coeff d'attaque qui va changer en fonction d'avantage/désavantage d'affinité
 		if (affA.compareTo(affB) == 1 || affA.compareTo(affB) == -2) {
-			coeff -= 0.25;
+			coeff -= 1;
 		}
 		else if (affA.compareTo(affB) == -1 || affA.compareTo(affB) == 2 ) {
-			 coeff += 0.25;
+			 coeff += 1;
 		}
 		return coeff;
 	}
@@ -34,11 +34,23 @@ public class GameService {
 		
 		String des = "";
 		
+		System.out.print("\n"+cardA);
+		Affinity affA = cardA.getAffinity();
+		Affinity affB = cardB.getAffinity();
+		int strA = cardA.getStrength();
+		int strB = cardA.getStrength();
+		int coeffA = matchupAffinity(affA,affB);
+		int coeffB = matchupAffinity(affB,affA);
+		int degA = coeffA * strA;
+		
+		int degB = coeffB * strB;
+		
 		int HPa = cardA.getHP();
 		int HPb = cardB.getHP();
-		
 		while (HPa > 0 && HPb > 0) {
-			des += Rounds(cardA,cardB,HPa,HPb);
+			des += Rounds(cardA, cardB, degA,degB,HPa,HPb);
+			HPa = cardA.getHP();
+			HPb = cardB.getHP();
 		}
 		
 		if (HPa == 0 && HPb ==0) {
@@ -56,20 +68,10 @@ public class GameService {
 		
 	}
 	
-	public String Rounds(Card cardA, Card cardB, int HPa, int HPb) {
+	private String Rounds(Card cardA,Card cardB, int degA, int degB, int HPa, int HPb) {
 		
-		Affinity affA = cardA.getAffinity();
-		Affinity affB = cardB.getAffinity();
-		
-		int coeffA = matchupAffinity(affA,affB);
-		int coeffB = matchupAffinity(affB,affA);
-		
-		int degA = coeffA * cardA.getStrength();
-		int degB = coeffB * cardB.getStrength();
-		
-		int nCoupsA = (int)(Math.random() * 6 + 1);
-		int nCoupsB = (int)(Math.random() * 6 + 1);
-		
+		int nCoupsA = (int)(Math.random() * 3 + 1);
+		int nCoupsB = (int)(Math.random() * 3 + 1);
 		HPa = HPa - (nCoupsA*degA);
 		HPb = HPb - (nCoupsB*degB);
 		
@@ -80,10 +82,5 @@ public class GameService {
 		return msg;
 		
 	}
-	
-	public void main(){
-		System.out.print(Jeu(17,18));
-	}
-	
 	
 }

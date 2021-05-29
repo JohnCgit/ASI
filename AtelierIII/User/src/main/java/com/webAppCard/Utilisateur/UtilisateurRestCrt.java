@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 //TODO Create method removeCard from collection 
 
 @RestController
@@ -104,4 +103,14 @@ public class UtilisateurRestCrt {
 //		uService.updateEnergy(idUser, idCard);
 //	}
 //
+	
+//////////////////////////////////////
+//Verif
+//////////////////////////////////////
+	
+	@RequestMapping(method=RequestMethod.GET, value="/verif/{username}/{password}")
+	public boolean verifUser(@PathVariable String username,@PathVariable String password) {
+		System.out.println("here");
+		return uService.verifUser(username, password);
+	}
 	}

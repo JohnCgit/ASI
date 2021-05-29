@@ -33,23 +33,17 @@ public class UtilisateurService {
 	
 	public void addUser(String name, String pwd, String surname) { // Cr�er un user s'il n'existe pas d�j�
 		Optional<Utilisateur> oUser=uRepository.findByName(name);
-		System.out.println("iwasthere");
 		if(!oUser.isPresent()) {
 			Utilisateur newUser=new Utilisateur(name, pwd, surname);
 			initCollec(newUser);
 			newUser.setMoney(500);
 			uRepository.save(newUser);
-			//updateMoney(500,newUser.getId());
-			//uRepository.save(newUser);
-			System.out.println("iwasthere?");
 		}
 	}
 	
 	public void initCollec(Utilisateur u) { //Une collection est assign� � un user quand il est cr��
 		int[] array = {1,2,3};	
-		System.out.println("iamdone?");
 		for (int i : array) {u.addCard(i);}		
-		System.out.println("itseemsso?");
 		}
 	
 	public void randomInitCollec(Utilisateur u) { //fonction potentiellement utile pour attribuer des cartes al�atoirement

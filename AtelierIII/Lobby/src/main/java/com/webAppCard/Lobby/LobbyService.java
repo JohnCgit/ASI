@@ -1,6 +1,6 @@
 package com.webAppCard.Lobby;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -33,12 +33,7 @@ public class LobbyService {
 	public List<Room> getAllRoom(){
 		return (List<Room>) rRepository.findAll();
 	}
-//	public String joinRoom(int idRoom, int idPlayer2, int idCardPlayer2) {
-//		Room r = getRoom(idRoom);
-//		r.setPlayer2(idPlayer2, idCardPlayer2);
-//		rRepository.save(r);
-//		return startGame(idRoom);
-//	}
+
 	public boolean joinRoom(int idRoom, int idPlayer2, int idCardPlayer2) {
 		Room r = getRoom(idRoom);
 		int mise = r.getMise();	
@@ -69,12 +64,29 @@ public class LobbyService {
 	}
 	public String startGame(int idRoom) {
 		Room r = getRoom(idRoom);
-//		String url="http://127.0.0.1:"+ReverseProxyPort+"/game/"+r.getIdCardPlayer1()+"/"+r.getIdCardPlayer2();
-		RestTemplate restTemplate = new RestTemplate();
-//		HttpEntity<String> request = new HttpEntity<>("game");
-//		String res = restTemplate.postForObject(url, request, String.class);
-		String reponse = restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/game/"+r.getIdCardPlayer1()+"/"+r.getIdCardPlayer2(), String.class);	
+		String reponse = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/game/"+r.getIdCardPlayer1()+"/"+r.getIdCardPlayer2(), String.class);	
 		return reponse;
 	}
 
+	public String play(int idRoom) {
+		String reponse = startGame(idRoom);
+		int winner = (int)reponse.charAt(reponse.length()-1);
+		Room r = getRoom(idRoom);
+		if(winner==0) {
+			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
+			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
+		}
+		else if (winner == 1) {
+			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
+		}
+		else {
+			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
+		}
+		deleteRoom(r);
+		return reponse;
+	}
+
+	private void deleteRoom(Room r) {
+		rRepository.delete(r);
+	}
 }
