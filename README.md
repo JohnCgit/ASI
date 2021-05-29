@@ -30,3 +30,31 @@ https://webdevdesigner.com/q/main-differences-between-soap-and-restful-web-servi
 https://www.sepaforcorporates.com/payments-news-2/a-quick-introduction-to-apis-for-folks-interested-in-open-banking/
 
 https://stackoverflow.com/questions/9275613/is-mvc-restful-by-design
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public static void main(String[] args) 
+{	
+	 String text    =
+	            "This/is/the/text/to/be/searched/" +
+	            "for/occurrences/of/the http:// pattern/.";
+
+	 
+
+	        String patternString = "\\w+/";
+
+	 
+
+	        Pattern pattern = Pattern.compile(patternString);
+
+	 
+	        Matcher matcher = pattern.matcher(text);
+	        List<String> list = new ArrayList<String>();
+	        while (matcher.find()) {
+	        	list.add(matcher.group(0));
+	        }
+	       
+	       System.out.println(list);
+
+	        
+}
