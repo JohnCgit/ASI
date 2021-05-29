@@ -15,6 +15,7 @@ import javax.persistence.Id;
 	int idCardPlayer2;
 	int mise;
 
+	public Room() {}
 	public Room(int idPlayer1,int idCardPlayer1,int mise) {
 		this.idPlayer1=idPlayer1;
 		this.idCardPlayer1=idCardPlayer1;
@@ -37,6 +38,16 @@ import javax.persistence.Id;
 
 	public int getIdCardPlayer2() {
 		return idCardPlayer2;
+	}
+
+	public int getIdPlayer2() {
+		return idPlayer2;
+	}
+	public int getMise() {
+		return mise;
+	}
+	public int getId() {
+		return id;
 	}
 	
 

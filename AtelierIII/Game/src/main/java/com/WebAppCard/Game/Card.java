@@ -1,4 +1,4 @@
-package com.webAppCard.Card;
+package com.WebAppCard.Game;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -32,5 +32,8 @@ public class Transaction {
 		return cardId;
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
 }

@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
 public class LobbyRestCrt {
 
 	@Autowired
@@ -20,13 +21,13 @@ public class LobbyRestCrt {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/join/{idRoom}/{idPlayer}/{idCard}")
-	public void joinRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
-		lService.joinRoom(idRoom,idPlayer,idCard);
+	public boolean joinRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
+		return lService.joinRoom(idRoom,idPlayer,idCard);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/create/{idPlayer}/{idCard}")
-	public void createRoom(@PathVariable int idRoom,@PathVariable int idPlayer,@PathVariable int idCard) {
-		lService.createRoom(idRoom,idPlayer,idCard);
+	@RequestMapping(method=RequestMethod.POST,value="/create/{idPlayer}/{idCard}/{mise}")
+	public boolean createRoom(@PathVariable int idPlayer,@PathVariable int idCard,@PathVariable int mise) {
+		return lService.createRoom(idPlayer,idCard,mise);
 	}
 	
 	

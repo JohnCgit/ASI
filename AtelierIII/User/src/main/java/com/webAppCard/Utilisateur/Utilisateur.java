@@ -49,7 +49,7 @@ public class Utilisateur {
 		this.collection.add(idCard);
 	}
 	
-	public void removeCard(int idCard) {
+	public void removeCard(Integer idCard) {
 		this.collection.remove(idCard);
 	}
 	

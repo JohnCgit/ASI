@@ -27,16 +27,16 @@ public class MarketRestCrt {
 	
 	// Réalise la mise sur le marché de la carte d'id idCard par l'utilisateur d'id idSeller
 	@RequestMapping(method=RequestMethod.POST,value="/sell/{idCard}/{idSeller}")
-	public void sellCard(@PathVariable int idCard, @PathVariable int idSeller) 
+	public boolean sellCard(@PathVariable int idCard, @PathVariable int idSeller) 
 	{
-		mService.addTransaction(new Transaction(idCard,idSeller));
+		return mService.sellTransaction(idCard,idSeller);
 	}
 	
 	// Réalise l'achat  de la carte contenue dans l'objet Transaction d'id idtransaction  par l'utilisateur d'id idBuyer
 	@RequestMapping(method=RequestMethod.POST,value="/buy/{idTransaction}/{idBuyer}")
-	public void buyCard(@PathVariable int idTransaction, @PathVariable int idBuyer) 
+	public boolean buyCard(@PathVariable int idTransaction, @PathVariable int idBuyer) 
 	{
-		mService.buyCard(idTransaction,idBuyer);
+		return mService.buyCard(idTransaction,idBuyer);
 	}
 	
 }

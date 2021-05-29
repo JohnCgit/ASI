@@ -1,3 +1,4 @@
+package com.WebAppCard.Game;
 
 public enum Affinity {
 	
