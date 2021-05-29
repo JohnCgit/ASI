@@ -32,14 +32,12 @@ https://www.sepaforcorporates.com/payments-news-2/a-quick-introduction-to-apis-f
 https://stackoverflow.com/questions/9275613/is-mvc-restful-by-design
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
-
+```
 public static void main(String[] args) 
 {	
 	 String text    =
 	            "This/is/the/text/to/be/searched/" +
 	            "for/occurrences/of/the http:// pattern/.";
-
-	 
 
 	        String patternString = "\\w+/";
 
@@ -58,3 +56,4 @@ public static void main(String[] args)
 
 	        
 }
+```
