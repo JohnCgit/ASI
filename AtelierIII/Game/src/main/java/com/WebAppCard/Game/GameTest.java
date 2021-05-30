@@ -31,28 +31,40 @@ public void tearDown() {
 @Test
 public void getCardTest() {
     int id;
-    res = getCard(id);
-    assertTrue(res.isInstance(Card) && res.id == id);
+    Card res = getCard(id);
+    assertTrue(res.isInstance(Card));	//on retourne bien un élément Card
+    assertTrue(res.id.equals(id));	//c'est la bonne carte
 }
   
 @Test
 public void matchupAffinityTest() {
     
-    aff1 = Affinities[0];
-    aff2 = Affinities[1];
-    aff3 = Affinities[2];
+    Affinity aff1 = Affinities.get(0);
+    Affinity aff2 = Affinities.get(1);
+    Affinity aff3 = Affinities.get(2);
     
-    assertTrue(matchupAffinity(aff1,aff1) == 2);  //Egalité
-    assertTrue(matchupAffinity(aff1,aff2) == 1);  //Eau battue par Plante
-    assertTrue(matchupAffinity(aff1,aff3) == 3);  //Eau bat Feu
+    assertTrue(matchupAffinity(aff1,aff1).equals(2));  //Egalité
+    assertTrue(matchupAffinity(aff1,aff2).equals(1));  //Eau battue par Plante
+    assertTrue(matchupAffinity(aff1,aff3).equals(3));  //Eau bat Feu
     
-    assertTrue(matchupAffinity(aff2,aff1) == 3);  //Plante bat Eau
-    assertTrue(matchupAffinity(aff2,aff2) == 2);  //Egalité
-    assertTrue(matchupAffinity(aff2,aff3) == 1);  //Plante battue par Feu
+    assertTrue(matchupAffinity(aff2,aff1).equals(3));  //Plante bat Eau
+    assertTrue(matchupAffinity(aff2,aff2).equals(2));  //Egalité
+    assertTrue(matchupAffinity(aff2,aff3).equals(1));  //Plante battue par Feu
 
-    assertTrue(matchupAffinity(aff3,aff1) == 1);  //Feu battu par Eau
-    assertTrue(matchupAffinity(aff3,aff2) == 3);  //Feu bat Plante
-    assertTrue(matchupAffinity(aff3,aff3) == 2);  //Egalité
-	}
+    assertTrue(matchupAffinity(aff3,aff1).equals(1));  //Feu battu par Eau
+    assertTrue(matchupAffinity(aff3,aff2).equals(3));  //Feu bat Plante
+    assertTrue(matchupAffinity(aff3,aff3).equals(2));  //Egalité
+}
+	
+@Test
+public void JeuTest() {
+	
+    int id1;
+    int id2;
+    Card res1 = getCard(id1);
+    Card res2 = getCard(id2);
+    
+    
+}
 	
 }
