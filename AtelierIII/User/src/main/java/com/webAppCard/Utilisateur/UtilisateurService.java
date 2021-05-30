@@ -32,6 +32,7 @@ public class UtilisateurService {
 //////////////////////////////////////
 	
 	public void addUser(String name, String pwd, String surname) { // Cr�er un user s'il n'existe pas d�j�
+		System.out.println("gotcha");
 		Optional<Utilisateur> oUser=uRepository.findByName(name);
 		if(!oUser.isPresent()) {
 			Utilisateur newUser=new Utilisateur(name, pwd, surname);

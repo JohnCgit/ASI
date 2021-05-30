@@ -8,14 +8,10 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class UtilisateurTest {
   
   private List<String> stringList;
-
-  @Autowired
-  UtilisateurService uService;
   
   @Before
   public void setUp() {
@@ -44,25 +40,5 @@ public class UtilisateurTest {
     }
   }
 
-  @Test
-  public void updateUtilisateurTest() {
-	uService.addUser("User","Pwd","Surname");
-    Utilisateur u = uService.getUserByName("User");
-    assertTrue(u.getName() == "User"); // Test le constructeur
-    assertTrue(u.getPassword() == "Pwd"); // Test le constructeur
-    assertTrue(u.getSurname() == "Surname"); // Test le constructeur
-    assertTrue(u.getMoney() == 500); // Test updateMoney
-    Utilisateur v = uService.getUserById(u.getId());
-    assertTrue(v.getId() == u.getId()); // Test getId
-    Utilisateur w = uService.getUserByName(u.getName());
-    assertTrue(w.getId() == u.getId());
-    List<Integer> L_Card = new ArrayList<Integer>();
-    L_Card.add(1);
-    L_Card.add(2);
-    L_Card.add(3);
-    assertTrue(u.getCollection() == L_Card); // Test initCollec & addCard
-    L_Card.remove(1);
-    uService.removeCard(u.getId(), 1);
-    assertTrue(u.getCollection() == L_Card); //Test removeCard
-  }
+
 }
