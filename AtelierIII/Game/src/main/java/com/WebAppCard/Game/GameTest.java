@@ -8,38 +8,37 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GameTest {
-	private List<Integer> idCard;
-  private List<String> Affinities;
+private List<Integer> idCard;
+private List<String> Affinities;
 
-	@Before
-	public void setUp() {
-		idCard = new ArrayList<Integer>();
+@Before
+public void setUp() {
+    idCard = new ArrayList<Integer>();
     Affinities = new ArrayList<String>();
-		idCard.add(17);
-		idCard.add(18);
+    idCard.add(17);
+    idCard.add(18);
     Affinities.add(Affinity.EAU)
     Affinities.add(Affinity.PLANTE)
     Affinities.add(Affinity.FEU)
+}
 
-	}
-
-	@After
-	public void tearDown() {
-		idCard = null;
+@After
+public void tearDown() {
+    idCard = null;
     Affinities = null;
-	}
+}
 
-	@Test
-  public void getCardTest() {
+@Test
+public void getCardTest() {
     int id;
     res = getCard(id);
     assertTrue(res.isInstance(Card) && res.id == id);
-  }
+}
   
-  @Test
-	public void matchupAffinityTest() {
+@Test
+public void matchupAffinityTest() {
     
-		aff1 = Affinities[0];
+    aff1 = Affinities[0];
     aff2 = Affinities[1];
     aff3 = Affinities[2];
     
