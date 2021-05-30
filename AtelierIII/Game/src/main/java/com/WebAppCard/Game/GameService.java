@@ -15,8 +15,9 @@ public class GameService {
 		RestTemplate resttemplate = new RestTemplate();
 		return resttemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/"+id, Card.class);
 	 }
-	
-		public int matchupAffinity(Affinity affA, Affinity affB) {
+		
+	public int matchupAffinity(Affinity affA, Affinity affB) { 	//méthode qui permet de déterminer l'affinité de la carte A par rapport à la carte B
+		
 		int coeff = 2;	//coeff d'attaque qui va changer en fonction d'avantage/désavantage d'affinité
 		if (affA.compareTo(affB) == 1 || affA.compareTo(affB) == -2) {
 			coeff -= 1;
@@ -27,7 +28,8 @@ public class GameService {
 		return coeff;
 	}
 	
-	public String Jeu(int idCardA, int idCardB) {
+	public String Jeu(int idCardA, int idCardB) {	//Met en place le début de partie (récupération des cartes et des infos nécessaires, comparaison des affinités,
+							//lancement des rounds et descriptions, annonce d'un gagnant potentiel
 		
 		Card cardA = getCard(idCardA);
 		Card cardB = getCard(idCardB);
@@ -68,7 +70,8 @@ public class GameService {
 		
 	}
 	
-	private String Rounds(Card cardA,Card cardB, int degA, int degB, int HPa, int HPb) {
+	private String Rounds(Card cardA,Card cardB, int degA, int degB, int HPa, int HPb) {	//Met en place un round (nombre de coups aléatoires par carte par tour, 
+												//baisse des HP, string à analyser par le front-end
 		
 		int nCoupsA = (int)(Math.random() * 3 + 1);
 		int nCoupsB = (int)(Math.random() * 3 + 1);
