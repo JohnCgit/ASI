@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -27,8 +29,17 @@ public class UtilisateurServiceTest {
 	@MockBean
 	private UtilisateurRepository urepo;
 	
-	Utilisateur tmpUser=new Utilisateur("User","Pwd","Surname");
+	@Before
+	public void setUp() {
+		System.out.println("[BEFORE TEST Serivce]");
+	}
 	
+	@After
+	public void cleanUp() {
+		System.out.println("[AFTER TEST Service]");
+	}
+
+	Utilisateur tmpUser=new Utilisateur("User","Pwd","Surname");
 	@Test
 	public void getUtilisateurName() {
 		Mockito.when(
@@ -37,14 +48,15 @@ public class UtilisateurServiceTest {
 		Utilisateur userInfo=uService.getUserByName("User");
 		assertTrue(userInfo.getName().equals(tmpUser.getName()));
 	}
-	
+
+	Utilisateur tmpUser1=new Utilisateur("User","Pwd","Surname");
 	@Test
 	public void getUtilisateurId() {
 		Mockito.when(
 				urepo.findById(Mockito.any())
-				).thenReturn(Optional.ofNullable(tmpUser));
-		Utilisateur userInfo=uService.getUserById(tmpUser.getId());
-		assertTrue(userInfo.getName().equals(tmpUser.getName()));
+				).thenReturn(Optional.ofNullable(tmpUser1));
+		Utilisateur userInfo=uService.getUserById(tmpUser1.getId());
+		assertTrue(userInfo.getName().equals(tmpUser1.getName()));
 	}
 	
 	@Test
@@ -63,6 +75,12 @@ public class UtilisateurServiceTest {
 	
 	@Test
 	public void addCard() {
-		
+		Mockito.when(
+				urepo.findById(Mockito.any())
+				).thenReturn(Optional.ofNullable(tmpUser));
+		int id=tmpUser.getId();
+		uService.addCard(id, 4);
+		System.out.println(tmpUser.getCollection());
+		assertTrue(true);
 	}
 }

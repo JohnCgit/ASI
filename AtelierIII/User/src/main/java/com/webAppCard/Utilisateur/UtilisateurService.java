@@ -65,6 +65,7 @@ public class UtilisateurService {
 	public Utilisateur getUserById(int idUser) { // renvoie l'utilistauer, s'il existe, gr�ce � son id
 		Utilisateur res = null;
 		Optional<Utilisateur> oUser=uRepository.findById(idUser);
+		System.out.println(oUser.isPresent());
 		if(oUser.isPresent()) {
 			res = oUser.get();
 		}
@@ -74,6 +75,7 @@ public class UtilisateurService {
 	public Utilisateur getUserByName(String name) { // renvoie l'utilistauer, s'il existe, gr�ce � son id
 		Utilisateur res=null;
 		Optional<Utilisateur> oUser=uRepository.findByName(name);
+		System.out.println(oUser.isPresent());
 		if (oUser.isPresent()) {
 			res=oUser.get();
 		}
@@ -114,7 +116,7 @@ public class UtilisateurService {
 // Cards
 //////////////////////////////////////	
 	
-	public void addCard(int idCard, int idUser) {// rajoute une carte dans la collection de l'utilisateur
+	public void addCard(int idUser, int idCard) {// rajoute une carte dans la collection de l'utilisateur
 		Utilisateur u=getUserById(idUser);
 //		int energy = this.restTemplate.getForObject("/Card/Energy/{id}",Integer.class, idCard);
 		u.addCard(idCard);

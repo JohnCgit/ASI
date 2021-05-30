@@ -72,7 +72,7 @@ public class UtilisateurRestCrt {
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/addCard/{idUser}/{idCard}")
 	public void addCard(@PathVariable int idUser,@PathVariable int idCard) {
-		uService.addCard(idCard, idUser);
+		uService.addCard(idUser, idCard);
 	}
 //////////////////////////////////////
 // Money
