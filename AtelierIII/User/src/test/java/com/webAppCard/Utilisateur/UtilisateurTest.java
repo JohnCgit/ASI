@@ -15,7 +15,7 @@ public class UtilisateurTest {
   private List<String> stringList;
 
   @Autowired
-  UtilisateurService uService;
+  UtilisateurServiceTest uService;
   
   @Before
   public void setUp() {
@@ -42,27 +42,5 @@ public class UtilisateurTest {
       assertTrue(u.getPassword() == msg2);
       assertTrue(u.getSurname() == msg3);
     }
-  }
-
-  @Test
-  public void updateUtilisateurTest() {
-	uService.addUser("User","Pwd","Surname");
-    Utilisateur u = uService.getUserByName("User");
-    assertTrue(u.getName() == "User"); // Test le constructeur
-    assertTrue(u.getPassword() == "Pwd"); // Test le constructeur
-    assertTrue(u.getSurname() == "Surname"); // Test le constructeur
-    assertTrue(u.getMoney() == 500); // Test updateMoney
-    Utilisateur v = uService.getUserById(u.getId());
-    assertTrue(v.getId() == u.getId()); // Test getId
-    Utilisateur w = uService.getUserByName(u.getName());
-    assertTrue(w.getId() == u.getId());
-    List<Integer> L_Card = new ArrayList<Integer>();
-    L_Card.add(1);
-    L_Card.add(2);
-    L_Card.add(3);
-    assertTrue(u.getCollection() == L_Card); // Test initCollec & addCard
-    L_Card.remove(1);
-    uService.removeCard(u.getId(), 1);
-    assertTrue(u.getCollection() == L_Card); //Test removeCard
   }
 }
