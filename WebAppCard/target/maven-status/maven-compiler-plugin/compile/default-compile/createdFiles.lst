@@ -1,0 +1,16 @@
+com\webAppCard\service\AuthService.class
+com\webAppCard\repository\CardRepository.class
+com\webAppCard\WebAppCard.class
+com\webAppCard\service\CardService.class
+com\webAppCard\rest\MarketRestCrt.class
+com\webAppCard\model\User.class
+com\webAppCard\rest\CardRestCrt.class
+com\webAppCard\model\Card.class
+com\webAppCard\rest\UserRestCtr.class
+com\webAppCard\service\UserService.class
+com\webAppCard\model\Transaction.class
+com\webAppCard\rest\AuthRestCrt.class
+com\webAppCard\repository\TransactionRepository.class
+com\webAppCard\rest\TestRestCrt.class
+com\webAppCard\repository\UserRepository.class
+com\webAppCard\service\MarketService.class

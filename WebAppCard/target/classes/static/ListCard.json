@@ -1,0 +1,19 @@
+[{
+        "Name": "test",
+        "Family": "blabla",
+        "Affinity": "hfh",
+        "Energy": 50,
+        "HP": 100,
+        "Price": 250,
+        "id": 1
+    },
+    {
+        "Name": "test",
+        "Family": "blabla",
+        "Affinity": "hfh",
+        "Energy": 50,
+        "HP": 100,
+        "Price": 250,
+        "id": 2
+    }
+]

@@ -1,4 +1,7 @@
 <h1>ASI</h1>
+Requête:
+https://attacomsian.com/blog/http-requests-resttemplate-spring-boot
+
 
 Pour push:
 * Window -> show view -> Other -> git staging/repositories
@@ -27,3 +30,6 @@ https://webdevdesigner.com/q/main-differences-between-soap-and-restful-web-servi
 https://www.sepaforcorporates.com/payments-news-2/a-quick-introduction-to-apis-for-folks-interested-in-open-banking/
 
 https://stackoverflow.com/questions/9275613/is-mvc-restful-by-design
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+

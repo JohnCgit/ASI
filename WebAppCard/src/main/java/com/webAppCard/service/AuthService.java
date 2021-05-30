@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 	@Autowired
 	UserService uService;
 	
-	public void verifUser(String username, String password) {
-		uService.verifUser(username, password);
+	public boolean verifUser(String username, String password) {
+		return uService.verifUser(username, password);
 	}
 
 }

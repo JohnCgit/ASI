@@ -14,35 +14,38 @@ public class User {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String username;
-	public String pwd;
-	private String mail;
+	private String name;
+	private String surname;
+	public String password;
+
 	@ElementCollection
 	private List<Integer> Collection;
+	private List<Integer> Energy;
 	private int Money;
 	
 	public User() {
 	}
 	
-	public User(String username, String pwd, String mail) {
+	public User(String name, String password, String surname) {
 		super();
-		this.username=username;
-		this.pwd=pwd;
-		this.mail=mail;
-		this.Collection=new ArrayList<Integer>();	
+		this.name=name;
+		this.surname=surname;
+		this.password=password;
+		this.Collection=new ArrayList<Integer>();
+		this.Energy=new ArrayList<Integer>();
 		this.Money=0;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public String getPwd() {
-		return this.pwd;
+	public String getPassword() {
+		return this.password;
 	}
 	
-	public String getMail() {
-		return this.mail;
+	public String getSurname() {
+		return this.surname;
 	}
 
 	public void addCard(int idCard) {
@@ -63,5 +66,9 @@ public class User {
 	
 	public int getCollectionSize() {
 		return this.Collection.size();
+	}
+	
+	public int getId() {
+		return id;
 	}
 }

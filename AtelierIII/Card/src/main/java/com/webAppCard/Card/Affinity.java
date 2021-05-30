@@ -1,0 +1,11 @@
+package com.webAppCard.Card;
+
+public enum Affinity {
+	
+	EAU, FEU, PLANTE
+
+}
+
+// EAU bat FEU
+// FEU bat PLANTE
+// PLANTE bat EAU 
