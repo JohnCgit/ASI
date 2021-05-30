@@ -3,6 +3,8 @@ package com.webAppCard.Utilisateur;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.After;
@@ -27,7 +29,9 @@ public class UtilisateurServiceTest {
 	private UtilisateurService uService;
 
 	@MockBean
-	private UtilisateurRepository urepo;
+	private UtilisateurRepository uRepository;
+
+	Utilisateur tmpUser=new Utilisateur("User","Pwd","Surname");
 	
 	@Before
 	public void setUp() {
@@ -38,37 +42,46 @@ public class UtilisateurServiceTest {
 	public void cleanUp() {
 		System.out.println("[AFTER TEST Service]");
 	}
-
-	Utilisateur tmpUser=new Utilisateur("User","Pwd","Surname");
-	@Test
-	public void getUtilisateurName() {
-		Mockito.when(
-				urepo.findByName(Mockito.any())
-				).thenReturn(Optional.ofNullable(tmpUser));
-		Utilisateur userInfo=uService.getUserByName("User");
-		assertTrue(userInfo.getName().equals(tmpUser.getName()));
-	}
-
-	Utilisateur tmpUser1=new Utilisateur("User","Pwd","Surname");
-	@Test
-	public void getUtilisateurId() {
-		Mockito.when(
-				urepo.findById(Mockito.any())
-				).thenReturn(Optional.ofNullable(tmpUser1));
-		Utilisateur userInfo=uService.getUserById(tmpUser1.getId());
-		assertTrue(userInfo.getName().equals(tmpUser1.getName()));
-	}
 	
 	@Test
 	public void initCollec() {
 		uService.initCollec(tmpUser);
 		assertTrue(tmpUser.getCollectionSize()==3);
 	}
+
+	@Test
+	public void getUtilisateurId() {
+		Mockito.when(
+				uRepository.findById(Mockito.anyInt())
+				).thenReturn(Optional.ofNullable(tmpUser));
+		Utilisateur userInfo=uService.getUserById(1);
+		assertTrue(userInfo.getName().equals(tmpUser.getName()));
+	}
+	
+	@Test
+	public void getUtilisateurName() {
+		Mockito.when(
+				uRepository.findByName(Mockito.any())
+				).thenReturn(Optional.ofNullable(tmpUser));
+		Utilisateur userInfo=uService.getUserByName("User");
+		assertTrue(userInfo.getName().equals(tmpUser.getName()));
+	}
+
+	@Test
+	public void getAllUsers() {
+		List<Utilisateur> LUser = new ArrayList<>();
+		LUser.add(tmpUser);
+		Mockito.when(
+				uRepository.findAll()
+				).thenReturn(LUser);
+		List<Utilisateur> LUserInfo=uService.getAllUsers();
+		assertTrue(LUserInfo.size()==1);		
+	}
 	
 	@Test
 	public void verifUser() {
 		Mockito.when(
-				urepo.findByName(Mockito.any())
+				uRepository.findByName(Mockito.any())
 				).thenReturn(Optional.ofNullable(tmpUser));
 		assertTrue(uService.verifUser("User","Pwd"));
 	}
@@ -76,11 +89,29 @@ public class UtilisateurServiceTest {
 	@Test
 	public void addCard() {
 		Mockito.when(
-				urepo.findById(Mockito.any())
+				uRepository.findById(Mockito.anyInt())
 				).thenReturn(Optional.ofNullable(tmpUser));
-		int id=tmpUser.getId();
-		uService.addCard(id, 4);
+		uService.addCard(32, 4);
 		System.out.println(tmpUser.getCollection());
 		assertTrue(true);
 	}
+	
+	@Test
+	public void getMoney() {
+		Mockito.when(
+				uRepository.findById(Mockito.anyInt())
+				).thenReturn(Optional.ofNullable(tmpUser));
+		assertTrue(uService.getMoney(27)==0);
+	}
+	
+	@Test
+	public void updateMoney() {
+		Mockito.when(
+				uRepository.findById(Mockito.anyInt())
+				).thenReturn(Optional.ofNullable(tmpUser));
+		uService.updateMoney(44, 500);
+		assertTrue(tmpUser.getMoney()==500);
+	}
+	
+
 }

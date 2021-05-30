@@ -65,7 +65,7 @@ public class UtilisateurService {
 	public Utilisateur getUserById(int idUser) { // renvoie l'utilistauer, s'il existe, gr�ce � son id
 		Utilisateur res = null;
 		Optional<Utilisateur> oUser=uRepository.findById(idUser);
-		System.out.println(oUser.isPresent());
+		System.out.println(oUser);
 		if(oUser.isPresent()) {
 			res = oUser.get();
 		}

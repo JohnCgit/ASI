@@ -8,14 +8,11 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class UtilisateurTest {
   
   private List<String> stringList;
 
-  @Autowired
-  UtilisateurServiceTest uService;
   
   @Before
   public void setUp() {
