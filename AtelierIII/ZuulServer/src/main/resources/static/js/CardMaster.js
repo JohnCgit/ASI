@@ -83,7 +83,7 @@ function room(RoomId) {
     funClear("content_body");
     document.getElementById("content_header").textContent = (`Battle room ${RoomId}`);
     var Room = JSON.parse(loadRessource(`http://127.0.0.1:${port}/lobby/${RoomId}`, "GET"));
-    if (Room.idPLayer2 == null) {
+    if (Room.idPlayer2 == null) {
         document.getElementById("content_body").innerHTML = "Please wait";
         var start = new Date().getTime();
         milliseconds = 1000;
@@ -94,7 +94,7 @@ function room(RoomId) {
         }
         room(RoomId)
     } else {
-        document.getElementById("content_body").innerHTML = JSON.parse(loadRessource(`http://127.0.0.1:${port}/lobby/play/${RoomId}`, "GET"));
+        document.getElementById("content_body").innerHTML = JSON.parse(loadRessource(`http://127.0.0.1:${port}/lobby/Play/${RoomId}`, "GET"));
     }
 
 }
@@ -108,7 +108,7 @@ function create() {
 /* function loadRessource(source, method) {
     var xhttp = new XMLHttpRequest();
     xhttp.open(method, source, true);
-    xhttp.overrideMimeType("application/json");
+    xhttp.overrideMimeType("apPlication/json");
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -121,7 +121,7 @@ function create() {
 function loadRessource(source, method) {
     var xhttp = new XMLHttpRequest();
     xhttp.open(method, source, false);
-    xhttp.overrideMimeType("application/json");
+    xhttp.overrideMimeType("apPlication/json");
     xhttp.send();
     if (xhttp.status == 200) {
         return xhttp.response;
@@ -231,7 +231,7 @@ function select(RoomId) {
     funReturnDefault();
 }
 
-// Permet de créer et de remplir un tableau contenant les informations sur une liste de cartes
+// Permet de créer et de remPlir un tableau contenant les informations sur une liste de cartes
 // Si bool vaut true: affiche le tableau des achats
 // Sinon affiche celui des ventes
 function createFillTabCard(ListCard, bool) {
@@ -279,7 +279,7 @@ function createFillTabCard(ListCard, bool) {
 
 }
 
-// Permet de créer et de remplir un tableau contenant les informations sur une liste de cartes
+// Permet de créer et de remPlir un tableau contenant les informations sur une liste de cartes
 // Si bool vaut true: affiche le tableau des achats
 // Sinon affiche celui des ventes
 function createFillTabRoom(ListRoom) {
@@ -292,7 +292,7 @@ function createFillTabRoom(ListRoom) {
         </tr>
     </table>`;
     ListRoom.forEach(Room => {
-        var Player1 = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/id/${Room.idPLayer1}`, "GET"));
+        var Player1 = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/id/${Room.idPlayer1}`, "GET"));
         document.getElementById("tab").innerHTML +=
             `<tr id="${Room.id}">
         <th>${Player1}</th>
@@ -405,7 +405,7 @@ function room(RoomId) {
     funClear("content_body");
     document.getElementById("content_header").textContent = (`Battle room ${RoomId}`);
     var Room = JSON.parse(loadRessource(`http://127.0.0.1:${port}/lobby/${RoomId}`, "GET"));
-    if (Room.idPLayer2 == null) {
+    if (Room.idPlayer2 == null) {
         document.getElementById("content_body").innerHTML = "Please wait";
         var start = new Date().getTime();
         milliseconds = 1000;
@@ -416,7 +416,7 @@ function room(RoomId) {
         }
         room(RoomId)
     } else {
-        document.getElementById("content_body").innerHTML = JSON.parse(loadRessource(`http://127.0.0.1:${port}/lobby/play/${RoomId}`, "GET"));
+        document.getElementById("content_body").innerHTML = JSON.parse(loadRessource(`http://127.0.0.1:${port}/lobby/Play/${RoomId}`, "GET"));
     }
 
 }
@@ -432,7 +432,7 @@ function create(CardId) {
 /* function loadRessource(source, method) {
     var xhttp = new XMLHttpRequest();
     xhttp.open(method, source, true);
-    xhttp.overrideMimeType("application/json");
+    xhttp.overrideMimeType("apPlication/json");
     xhttp.send();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -445,7 +445,7 @@ function create(CardId) {
 function loadRessource(source, method) {
     var xhttp = new XMLHttpRequest();
     xhttp.open(method, source, false);
-    xhttp.overrideMimeType("application/json");
+    xhttp.overrideMimeType("apPlication/json");
     xhttp.send();
     if (xhttp.status == 200) {
         return xhttp.response;
@@ -555,7 +555,7 @@ function select(RoomId) {
     funReturnDefault();
 }
 
-// Permet de créer et de remplir un tableau contenant les informations sur une liste de cartes
+// Permet de créer et de remPlir un tableau contenant les informations sur une liste de cartes
 // Si bool vaut true: affiche le tableau des achats
 // Sinon affiche celui des ventes
 function createFillTabCard(ListCard, bool) {
@@ -603,7 +603,7 @@ function createFillTabCard(ListCard, bool) {
 
 }
 
-// Permet de créer et de remplir un tableau contenant les informations sur une liste de cartes
+// Permet de créer et de remPlir un tableau contenant les informations sur une liste de cartes
 // Si bool vaut true: affiche le tableau des achats
 // Sinon affiche celui des ventes
 function createFillTabRoom(ListRoom) {
@@ -616,7 +616,7 @@ function createFillTabRoom(ListRoom) {
         </tr>
     </table>`;
     ListRoom.forEach(Room => {
-        var Player1 = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/id/${Room.idPLayer1}`, "GET"));
+        var Player1 = JSON.parse(loadRessource(`http://127.0.0.1:${port}/user/id/${Room.idPlayer1}`, "GET"));
         document.getElementById("tab").innerHTML +=
             `<tr id="${Room.id}">
         <th>${Player1}</th>
