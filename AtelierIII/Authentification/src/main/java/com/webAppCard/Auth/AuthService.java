@@ -7,13 +7,13 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class AuthService {
-	private static final int ReverseProxyPort = 8082;
+
 
 	
 		
 	public boolean verifUser(String username, String password) {
 		RestTemplate restTemplate = new RestTemplate();
-		return  restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/verif/"+username+"/"+password, Boolean.class);
+		return  restTemplate.getForObject("http://127.0.0.1:8050/verif/"+username+"/"+password, Boolean.class);
 	}
 	
 
