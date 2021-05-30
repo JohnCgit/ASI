@@ -48,8 +48,8 @@ public class LobbyService {
 		}
 		return res;
 	}
-	public boolean createRoom(int idPlayer, int idCard, int mise) {
-		boolean res = false;
+	public int createRoom(int idPlayer, int idCard, int mise) {
+		int id = -1;
 		System.out.print("create");
 		int moneyPlayer = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getMoney/"+idPlayer, Integer.class);
 		List<Integer> collection = (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getCollection/"+idPlayer, List.class);
@@ -57,9 +57,9 @@ public class LobbyService {
 			Room room = new Room(idPlayer,idCard,mise);
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idPlayer+"/"+-mise,null);
 			rRepository.save(room);
-			res=true;
+			id = room.getId();
 		}
-		return res;
+		return id;
 		
 	}
 	public String startGame(int idRoom) {

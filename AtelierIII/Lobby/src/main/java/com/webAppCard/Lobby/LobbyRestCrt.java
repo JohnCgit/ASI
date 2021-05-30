@@ -15,9 +15,14 @@ public class LobbyRestCrt {
 	@Autowired
 	LobbyService lService;
 	
-	@RequestMapping(method=RequestMethod.GET,value="/All")
+	@RequestMapping(method=RequestMethod.GET,value="/getAll")
 	public List<Room>getAllRoom() {
 		return lService.getAllRoom();
+	}
+	
+	@RequestMapping(method=RequestMethod.GET,value="/{idRoom}")
+	public Room getRoom(@PathVariable int idRoom) {
+		return lService.getRoom(idRoom);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/join/{idRoom}/{idPlayer}/{idCard}")
@@ -26,7 +31,7 @@ public class LobbyRestCrt {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="/create/{idPlayer}/{idCard}/{mise}")
-	public boolean createRoom(@PathVariable int idPlayer,@PathVariable int idCard,@PathVariable int mise) {
+	public int createRoom(@PathVariable int idPlayer,@PathVariable int idCard,@PathVariable int mise) {
 		return lService.createRoom(idPlayer,idCard,mise);
 	}
 	
