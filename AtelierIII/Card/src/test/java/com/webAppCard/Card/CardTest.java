@@ -1,4 +1,4 @@
-package com.webAppCard.Card;
+	package com.webAppCard.Card;
 
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
@@ -29,7 +29,8 @@ public class CardTest {
 	    intList.add(10);
 	    intList.add(200);
 		affinityList = new ArrayList<Affinity>();
-		affinityList.add(Affinity.EAU); //IMPOSSIBLE DE SELECTIONNER UNE AFFINITE DE TYPE AFFINITE
+		affinityList.add(Affinity.EAU);
+		affinityList.add(Affinity.FEU); 
   }
 
     @After
