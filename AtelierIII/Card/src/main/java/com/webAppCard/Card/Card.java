@@ -35,6 +35,13 @@ public class Card {
 		this.imgUrl = imgUrl;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -99,13 +106,7 @@ public class Card {
 		this.price = Price;
 	}
 	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	@Override
 	public String toString() {

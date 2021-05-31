@@ -2,6 +2,7 @@ package com.webAppCard.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -19,8 +20,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.webAppCard.Card.Card;
 import com.webAppCard.Card.CardService;
 
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(value = CardRestCrt.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = CardRestCrt.class)
 public class CardRestCrtTest {
 	
 	@Autowired
@@ -33,7 +34,7 @@ public class CardRestCrtTest {
 	
 	@Test
 	public void getAllCard() throws Exception {
-		List<Card> LCard = new ArrayList<>();
+		List<Card> LCard = new ArrayList<Card>();
 		LCard.add(mockCard);
 		Mockito.when(
 				cService.getAllCard()
@@ -44,12 +45,9 @@ public class CardRestCrtTest {
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		System.out.println(result.getResponse().getContentAsString());
-		String expectedResult="{\"name\":\"Salamaiche\",\"family\":\"Lezard\",\"affinite\":null,\"energy\":40,\"hp\":60,\"strength\":10,\"price\":200,\"imgUrl\":\"https://i.imgur.com/szoTQIA.png\"}";
+		String expectedResult="[{\"id\":0,\"name\":\"Salamaiche\",\"family\":\"Lezard\",\"affinity\":null,\"energy\":40,\"hp\":60,\"strength\":10,\"price\":200,\"imgUrl\":\"https://i.imgur.com/szoTQIA.png\"}]";
 
-
-		JSONAssert.assertEquals(expectedResult, result.getResponse()
-				.getContentAsString(), false);
+		assertTrue(result.getResponse().getContentAsString().equals(expectedResult));
 	}
 
 }
