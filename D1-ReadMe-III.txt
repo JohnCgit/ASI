@@ -10,11 +10,11 @@ Eléments réalisés par membre:
 	- développement du microservice Game en JAVA + couverture de test sur Game
 
 	Jean :
-	- développement des microservices Lobby, Market, Transaction en JAVA + couverture de test sur Lobby, Market, Transaction
-	- développement du front-ent en JS
+	- développement des microservices Lobby, Market, Zuul en JAVA
+	- développement du front-ent en JS/HTML
 
 	Sylvain :
-	- développement du microservice Utilisateur en JAVA + couverture de test sur Utilisateur, Game
+	- développement du microservice Utilisateur en JAVA + couverture de test sur Utilisateur, Game, Market
 
 	Thomas :
 	- développement du microservice Card en JAVA + couverture de test sur Card
@@ -22,5 +22,4 @@ Eléments réalisés par membre:
 Eléments non réalisés:
 
 	- Gestion de l'énergie
-	- Couverture de test via Sonar
-	- Hébergement des microservices dans Docker
+	- Couverture de test via Sonar et test sur API REST
