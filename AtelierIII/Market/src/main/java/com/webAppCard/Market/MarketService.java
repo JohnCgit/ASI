@@ -63,6 +63,7 @@ public class MarketService {
 		if(moneyBuyer>=price) {
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idBuyer+"/"+-price,null);
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idSeller+"/"+price,null);
+			
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/removeCard/"+idSeller+"/"+idCard,null);
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/addCard/"+idBuyer+"/"+idCard,null);
 			this.removeTransaction(t);

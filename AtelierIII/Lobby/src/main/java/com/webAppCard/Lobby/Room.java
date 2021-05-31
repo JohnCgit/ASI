@@ -14,12 +14,14 @@ import javax.persistence.Id;
 	int idPlayer2;
 	int idCardPlayer2;
 	int mise;
+	String message;
 
 	public Room() {}
 	public Room(int idPlayer1,int idCardPlayer1,int mise) {
 		this.idPlayer1=idPlayer1;
 		this.idCardPlayer1=idCardPlayer1;
 		this.mise = mise;
+		message = "";
 	}
 	
 	public void setPlayer2(int idPlayer2,int idCardPlayer2) {
@@ -48,6 +50,14 @@ import javax.persistence.Id;
 	}
 	public int getId() {
 		return id;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message=message;
+		
 	}
 	
 

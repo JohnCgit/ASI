@@ -29,7 +29,7 @@ public class CardTest {
 	    intList.add(10);
 	    intList.add(200);
 		affinityList = new ArrayList<Affinity>();
-		affinityList.add(null); //IMPOSSIBLE DE SELECTIONNER UNE AFFINITE DE TYPE AFFINITE
+		affinityList.add(Affinity.EAU); //IMPOSSIBLE DE SELECTIONNER UNE AFFINITE DE TYPE AFFINITE
   }
 
     @After

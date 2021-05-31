@@ -69,9 +69,22 @@ public class LobbyService {
 	}
 
 	public String play(int idRoom) {
-		String reponse = startGame(idRoom);
-		int winner = (int)reponse.charAt(reponse.length()-1);
 		Room r = getRoom(idRoom);
+		if(r.getMessage().isEmpty()) {
+			r.setMessage(startGame(idRoom));
+		}
+		return r.getMessage();
+	}
+
+	private void deleteRoom(Room r) {
+		rRepository.delete(r);
+	}
+
+	public void remove(int idRoom) {
+		Room r = getRoom(idRoom);
+		String reponse = r.getMessage();
+		if(!reponse.isEmpty()) {
+		int winner = (int)reponse.charAt(reponse.length()-1);
 		if(winner==0) {
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
@@ -81,12 +94,7 @@ public class LobbyService {
 		}
 		else {
 			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
-		}
+		}}
 		deleteRoom(r);
-		return reponse;
-	}
-
-	private void deleteRoom(Room r) {
-		rRepository.delete(r);
 	}
 }

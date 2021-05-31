@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.webAppCard.Card.Card;
 import com.webAppCard.Card.CardService;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(value = CardRestCrt.class)
+//@RunWith(SpringRunner.class)
+//@WebMvcTest(value = CardRestCrt.class)
 public class CardRestCrtTest {
 	
 	@Autowired

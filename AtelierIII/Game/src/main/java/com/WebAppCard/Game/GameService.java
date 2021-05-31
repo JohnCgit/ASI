@@ -55,11 +55,11 @@ public class GameService {
 			HPb = cardB.getHP();
 		}
 		
-		if (HPa == 0 && HPb ==0) {
+		if (HPa <= 0 && HPb <=0) {
 			des += "End:0";
 		}
 		
-		else if (HPb ==0) {
+		else if (HPb <=0) {
 			des +="End:1";
 		}
 		else {
