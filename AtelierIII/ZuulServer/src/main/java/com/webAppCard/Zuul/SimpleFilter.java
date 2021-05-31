@@ -39,15 +39,15 @@ public class SimpleFilter extends ZuulFilter {
     
     log.info(String.format("%s request with url %s",request.getMethod(),request.getRequestURL().toString()));
     
-    String username = request.getParameter("username");
+    String username = request.getParameter("name");
     String password = request.getParameter("password");
     RestTemplate restTemplate = new RestTemplate();
     Boolean res = restTemplate.getForObject("http://127.0.0.1:8060/"+username+"/"+password, Boolean.class);
 
     if(!res){
-//        ctx.setResponseStatusCode(400);
-//        ctx.setResponseBody("access denied");
-//        ctx.setSendZuulResponse(false);
+        ctx.setResponseStatusCode(400);
+        ctx.setResponseBody("access denied");
+        ctx.setSendZuulResponse(false);
     	log.info(String.format("Not connected"));
 
     }   

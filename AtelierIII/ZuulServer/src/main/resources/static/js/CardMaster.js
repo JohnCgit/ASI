@@ -310,7 +310,7 @@ function loadRessource(source, method) {
     var Name = new URLSearchParams(window.location.search).get("Name");
     var Password = new URLSearchParams(window.location.search).get("Password");
     if (Name != null) {
-        source += `?username=${Name}&password=${Password}`;
+        source += `?name=${Name}&password=${Password}`;
     }
     xhttp.open(method, source, false);
     xhttp.overrideMimeType("apPlication/json");

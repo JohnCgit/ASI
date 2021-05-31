@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 public class LobbyService {
 	
 	 private final RestTemplate restTemplate;
-	 public static int ReverseProxyPort = 8082;
 	@Autowired
 	RoomRepository rRepository;
 	
@@ -38,11 +37,11 @@ public class LobbyService {
 		Room r = getRoom(idRoom);
 		int mise = r.getMise();	
 		boolean res = false;
-		int moneyPlayer = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getMoney/"+idPlayer2, Integer.class);
-		List<Integer> collection = (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getCollection/"+idPlayer2, List.class);
+		int moneyPlayer = this.restTemplate.getForObject("http://127.0.0.1:8050/getMoney/"+idPlayer2, Integer.class);
+		List<Integer> collection = (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:8050/getCollection/"+idPlayer2, List.class);
 		if(collection.contains(idCardPlayer2)&&moneyPlayer>=mise) {
 			r.setPlayer2(idPlayer2, idCardPlayer2);
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idPlayer2+"/"+-mise,null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+idPlayer2+"/"+-mise,null);
 			rRepository.save(r);
 			res=true;
 		}
@@ -51,11 +50,11 @@ public class LobbyService {
 	public int createRoom(int idPlayer, int idCard, int mise) {
 		int id = -1;
 		System.out.print("create");
-		int moneyPlayer = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getMoney/"+idPlayer, Integer.class);
-		List<Integer> collection = (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getCollection/"+idPlayer, List.class);
+		int moneyPlayer = this.restTemplate.getForObject("http://127.0.0.1:8050/getMoney/"+idPlayer, Integer.class);
+		List<Integer> collection = (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:8050/getCollection/"+idPlayer, List.class);
 		if(collection.contains(idCard)&&moneyPlayer>=mise) {
 			Room room = new Room(idPlayer,idCard,mise);
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idPlayer+"/"+-mise,null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+idPlayer+"/"+-mise,null);
 			rRepository.save(room);
 			id = room.getId();
 		}
@@ -64,7 +63,7 @@ public class LobbyService {
 	}
 	public String startGame(int idRoom) {
 		Room r = getRoom(idRoom);
-		String reponse = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/game/"+r.getIdCardPlayer1()+"/"+r.getIdCardPlayer2(), String.class);	
+		String reponse = this.restTemplate.getForObject("http://127.0.0.1:8030/"+r.getIdCardPlayer1()+"/"+r.getIdCardPlayer2(), String.class);	
 		return reponse;
 	}
 
@@ -86,14 +85,14 @@ public class LobbyService {
 		if(!reponse.isEmpty()) {
 		int winner = (int)reponse.charAt(reponse.length()-1);
 		if(winner==0) {
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
 		}
 		else if (winner == 1) {
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+r.getIdPlayer1()+"/"+r.getMise(),null);
 		}
 		else {
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+r.getIdPlayer2()+"/"+r.getMise(),null);
 		}}
 		deleteRoom(r);
 	}

@@ -19,7 +19,6 @@ public class MarketService {
 	
 	
 	 private final RestTemplate restTemplate;
-	 public static int ReverseProxyPort = 8082;
 	
 	
 	public MarketService(RestTemplateBuilder restTemplateBuilder) {
@@ -57,15 +56,15 @@ public class MarketService {
 		int idSeller = t.getSellerId();
 		boolean res = false;
 		
-		int price = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/Price/"+idCard, Integer.class);
-		int moneyBuyer = this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getMoney/"+idBuyer, Integer.class);
+		int price = this.restTemplate.getForObject("http://127.0.0.1:8040/Price/"+idCard, Integer.class);
+		int moneyBuyer = this.restTemplate.getForObject("http://127.0.0.1:8050/getMoney/"+idBuyer, Integer.class);
 		
 		if(moneyBuyer>=price) {
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idBuyer+"/"+-price,null);
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/updateMoney/"+idSeller+"/"+price,null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+idBuyer+"/"+-price,null);
+			this.restTemplate.put("http://127.0.0.1:8050/updateMoney/"+idSeller+"/"+price,null);
 			
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/removeCard/"+idSeller+"/"+idCard,null);
-			this.restTemplate.put("http://127.0.0.1:"+ReverseProxyPort+"/user/addCard/"+idBuyer+"/"+idCard,null);
+			this.restTemplate.put("http://127.0.0.1:8050/removeCard/"+idSeller+"/"+idCard,null);
+			this.restTemplate.put("http://127.0.0.1:8050/addCard/"+idBuyer+"/"+idCard,null);
 			this.removeTransaction(t);
 			res = true;
 		}
@@ -74,7 +73,7 @@ public class MarketService {
 
 	public boolean sellTransaction(int idCard, int idSeller) {
 		boolean res=false;
-		List<Integer> collection= (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/user/getCollection/"+idSeller, List.class);
+		List<Integer> collection= (List<Integer>)this.restTemplate.getForObject("http://127.0.0.1:8050/getCollection/"+idSeller, List.class);
 		if(collection.contains(idCard)) {
 			addTransaction(new Transaction(idCard,idSeller));
 			res=true;

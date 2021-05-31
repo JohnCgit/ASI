@@ -7,13 +7,11 @@ import org.springframework.web.client.RestTemplate;
 public class GameService {
 	
 	RestTemplate restTemplate;	
-	@Autowired
-	public static int ReverseProxyPort = 8082;
 	
 	
 	public Card getCard(int id) {	//avoir la carte
 		RestTemplate resttemplate = new RestTemplate();
-		return resttemplate.getForObject("http://127.0.0.1:"+ReverseProxyPort+"/card/"+id, Card.class);
+		return resttemplate.getForObject("http://127.0.0.1:8040/"+id, Card.class);
 	 }
 		
 	public int matchupAffinity(Affinity affA, Affinity affB) { 	//méthode qui permet de déterminer l'affinité de la carte A par rapport à la carte B
