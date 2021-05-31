@@ -11,7 +11,7 @@ Eléments réalisés par membre:
 
 	Jean :
 	- développement des microservices Lobby, Market, Zuul en JAVA
-	- développement du front-ent en JS
+	- développement du front-ent en JS/HTML
 
 	Sylvain :
 	- développement du microservice Utilisateur en JAVA + couverture de test sur Utilisateur, Game, Market
