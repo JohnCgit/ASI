@@ -23,4 +23,3 @@ Eléments non réalisés:
 
 	- Gestion de l'énergie
 	- Couverture de test via Sonar et test sur API REST
-	- Hébergement des microservices dans Docker
