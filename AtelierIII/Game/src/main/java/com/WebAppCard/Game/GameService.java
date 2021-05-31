@@ -76,7 +76,7 @@ public class GameService {
 		HPa = HPa - (nCoupsA*degA);
 		HPb = HPb - (nCoupsB*degB);
 		
-		String msg ="HP1:"+HPa+"HP2:"+HPb+"/";
+		String msg ="\n"+"HP1:"+HPa+"HP2:"+HPb+"/";
 		cardA.setHP(HPa);
 		cardB.setHP(HPb);
 		
