@@ -71,6 +71,7 @@ public class LobbyService {
 		Room r = getRoom(idRoom);
 		if(r.getMessage().isEmpty()) {
 			r.setMessage(startGame(idRoom));
+			rRepository.save(r);
 		}
 		return r.getMessage();
 	}
