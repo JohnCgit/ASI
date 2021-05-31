@@ -1,7 +1,7 @@
 package com.webAppCard.Card;
 
   import java.util.Optional;
-
+  import java.util.List;
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.stereotype.Service;
 
@@ -10,11 +10,14 @@ package com.webAppCard.Card;
   public class CardService {
 	@Autowired
   	CardRepository cRepository;
+	
+  	//Créer une carte
   	public void createCard(Card c) {
   		Card createdCard=cRepository.save(c);
   		System.out.println(createdCard);
   	}
   	
+  	//Récupère une carte d'id fourni
   	public Card getCard(int id) {
   		Optional<Card> cOpt =cRepository.findById(id);
   		if (cOpt.isPresent()) {
@@ -23,6 +26,11 @@ package com.webAppCard.Card;
   			return null;
   		}
   	}
+  	
+  	//Récupère la liste des cartes existantes
+	public List<Card> getAllCard() {
+		return cRepository.findAll();
+	}
   	
 	//Permet de récupérer le prix de la carte dont on a fourni l'id
 	public int getPrice(Integer cardId) {
@@ -37,5 +45,7 @@ package com.webAppCard.Card;
 	public int getId(Card card) {
 		return card.getId();
 	}
+
+
 
   }
