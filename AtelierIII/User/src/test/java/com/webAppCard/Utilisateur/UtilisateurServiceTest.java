@@ -33,16 +33,6 @@ public class UtilisateurServiceTest {
 
 	Utilisateur tmpUser=new Utilisateur("User","Pwd","Surname");
 	
-	@Before
-	public void setUp() {
-		System.out.println("[BEFORE TEST Serivce]");
-	}
-	
-	@After
-	public void cleanUp() {
-		System.out.println("[AFTER TEST Service]");
-	}
-	
 	@Test
 	public void initCollec() {
 		uService.initCollec(tmpUser);

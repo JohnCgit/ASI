@@ -3,7 +3,8 @@ package com.webAppCard.Card;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
-
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -25,7 +26,7 @@ public class CardServiceTest {
 	@MockBean
 	private CardRepository cRepo;
 	
-	Card tmpCard=new Card("Salamaiche", "Lezard", null, 40, 60, 10, 200, "https://i.imgur.com/szoTQIA.png");
+	Card tmpCard=new Card("Salamaiche", "Lezard", Affinity.FEU, 40, 60, 10, 200, "https://i.imgur.com/szoTQIA.png");
 	
 	@Test
 	public void getCard() {
@@ -37,7 +38,14 @@ public class CardServiceTest {
 	}
 	
 	@Test
-	public void createCard() {
-		
+	public void getAllCard() {
+		List<Card> LCard = new ArrayList<>();
+		LCard.add(tmpCard);
+		Mockito.when(
+				cRepo.findAll()
+				).thenReturn(LCard);
+		List<Card> LUserInfo=cService.getAllCard();
+		assertTrue(LUserInfo.size()==1);		
 	}
+
 }
